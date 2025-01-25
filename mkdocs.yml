@@ -2,9 +2,14 @@ site_name: ECE Common Course Tutorials
 site_author: 'ECE Course Staff'
 
 repo_name:   'cornell-ece-docs/ece-tutorials'
-repo_url:    'https://github.com/cornell-ece-docs/ece-tutorials'
+
+# Removes the ugly 'Edit on" buttons'
+# repo_url:    'https://github.com/cornell-ece-docs/ece-tutorials'
 
 # Copyright
 
 copyright:   'Copyright &copy; 2024 ECE Course Staff'
 
+# Theme
+
+theme: flatly
