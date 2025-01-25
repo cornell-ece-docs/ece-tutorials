@@ -16,3 +16,5 @@ theme: flatly
 
 nav:
   - Home: 'index.md'
+  - Tutorials:
+    - 'tut0-ecelinux.md'
