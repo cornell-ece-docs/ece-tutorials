@@ -1,17 +1,9 @@
-# Welcome to MkDocs
+# Welcome to Your Cornell ECE Course
 
-For full documentation visit [mkdocs.org](https://www.mkdocs.org).
+This website serves as a launchpad for Cornell's ECE courses, teaching the technical skills you need to use the [ecelinux](https://it.coecis.cornell.edu/ece/ecelinux/) servers, as well as other tools like [git](https://git-scm.com/) and [VS Code](https://code.visualstudio.com/).
 
-## Commands
+## Tutorials
 
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs -h` - Print help message and exit.
+Please take a look at the beginner tutorials as instructed by your course staff.
 
-## Project layout
-
-    mkdocs.yml    # The configuration file.
-    docs/
-        index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
+1. [ECELinux Access](tut0-ecelinux.md)

@@ -8,8 +8,11 @@ repo_name:   'cornell-ece-docs/ece-tutorials'
 
 # Copyright
 
-copyright:   'Copyright &copy; 2024 ECE Course Staff'
+copyright:   'Copyright &copy; 2024 Christopher Batten, ECE Course Staff'
 
 # Theme
 
 theme: flatly
+
+nav:
+  - Home: 'index.md'
