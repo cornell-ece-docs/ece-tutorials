@@ -14,6 +14,9 @@ copyright:   'Copyright &copy; 2024 Christopher Batten, ECE Course Staff'
 
 theme: flatly
 
+markdown_extensions:
+  - attr_list
+
 nav:
   - Home: 'index.md'
   - Tutorials:

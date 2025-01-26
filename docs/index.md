@@ -1,6 +1,6 @@
-# Welcome to Your Cornell ECE Course
+# Welcome to Cornell ECE
 
-This website serves as a launchpad for Cornell's ECE courses, teaching the technical skills you need to use the [ecelinux](https://it.coecis.cornell.edu/ece/ecelinux/) servers, as well as other tools like [git](https://git-scm.com/) and [VS Code](https://code.visualstudio.com/).
+This website serves as a launchpad for Cornell's ECE courses, teaching the technical skills you need to know to use the [ecelinux](https://it.coecis.cornell.edu/ece/ecelinux/) servers. In addition, the tutorials on this site cover common software development tools such as [git](https://git-scm.com/) and [VS Code](https://code.visualstudio.com/).
 
 ## Tutorials
 
