@@ -8,6 +8,7 @@ Please take a look at the beginner tutorials as instructed by your course staff.
 
 0. [ECELinux Access](tut0-ecelinux.md)
 1. [Linux Command Line Basics](tut1-linux-cli.md)
+2. [Using Git](tut2-git.md)
 
 ## Guides
 
