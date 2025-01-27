@@ -21,3 +21,5 @@ nav:
   - Home: 'index.md'
   - Tutorials:
     - 'tut0-ecelinux.md'
+  - Guides:
+    - 'doc0-coding-style.md'

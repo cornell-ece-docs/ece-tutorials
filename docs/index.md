@@ -7,3 +7,7 @@ This website serves as a launchpad for Cornell's ECE courses, teaching the techn
 Please take a look at the beginner tutorials as instructed by your course staff.
 
 1. [ECELinux Access](tut0-ecelinux.md)
+
+## Guides
+
+* [C/C++ Style Guide](doc0-coding-style.md)
