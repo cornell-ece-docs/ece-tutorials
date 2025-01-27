@@ -6,7 +6,8 @@ This website serves as a launchpad for Cornell's ECE courses, teaching the techn
 
 Please take a look at the beginner tutorials as instructed by your course staff.
 
-1. [ECELinux Access](tut0-ecelinux.md)
+0. [ECELinux Access](tut0-ecelinux.md)
+1. [Linux Command Line Basics](tut1-linux-cli.md)
 
 ## Guides
 
