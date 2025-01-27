@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <meta name="author" content="ECE Course Staff">
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>ECE C/C++ Coding Conventions - ECE Common Course Tutorials</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../css/brands.min.css" rel="stylesheet">
+        <link href="../css/solid.min.css" rel="stylesheet">
+        <link href="../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/docco.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">ECE Common Course Tutorials</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href=".." class="nav-link">Home</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Tutorials</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../tut0-ecelinux/" class="dropdown-item">ECE Linux Server Remote Access</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Guides</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="./" class="dropdown-item active" aria-current="page">ECE C/C++ Coding Conventions</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../tut0-ecelinux/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" class="nav-link disabled">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="1"><a href="#ece-cc-coding-conventions" class="nav-link">ECE C/C++ Coding Conventions</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#1-directories-and-files" class="nav-link">1. Directories and Files</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#2-formatting" class="nav-link">2. Formatting</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#3-naming" class="nav-link">3. Naming</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#4-comments" class="nav-link">4. Comments</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#5-scoping" class="nav-link">5. Scoping</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#6-c-pre-processor" class="nav-link">6. C Pre-processor</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#7-examples" class="nav-link">7. Examples</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="ece-cc-coding-conventions">ECE C/C++ Coding Conventions</h1>
+<p>Any significant programming project will usually require developers to
+follow a standardized set of coding conventions. These conventions might be
+set by a company, the leaders of an open-source project, or simply
+through historical precedent. Standardized coding conventions enable code
+written by multiple developers to be consistent and improves readability,
+maintainability, and extensibility. We have developed a simple set of
+coding conventions for your ECE coursework that we would like you to use in all
+programming assignments. Keep in mind that these are just guidelines, and
+there may be situations where it is appropriate to defy a convention.</p>
+<p>Note that some of these conventions have been adapted from the <a href="https://google.github.io/styleguide/cppguide.html">Google
+C++ Style Guide</a>. In
+general, anything not covered by the guidelines in this document should
+assume the Google style guide.</p>
+<h2 id="1-directories-and-files">1. Directories and Files</h2>
+<p>This section discusses how the file tree should be organized for your project.</p>
+<h3 id="11-directories">1.1. Directories</h3>
+<p>All header, inline, data, and source files should be in a single <code>src</code>
+directory. All tests should be a in a single <code>tests</code> directory. Anything
+other than ad-hoc testing should always be done in a separate build
+directory.</p>
+<h3 id="12-file-names">1.2. File Names</h3>
+<p>Files should be named in all lowercase and should use a dash (<code>-</code>) to
+separate words. C source files should use the <code>.c</code> filename extension,
+and C++ source files should use the <code>.cc</code> filename extension. Header
+files should use the <code>.h</code> filename extension, and inline files should use
+the <code>.inl</code> filename extension. Data files that contain C/C++ code and are
+meant to be included using the C preprocessor should use the <code>.dat</code>
+filename extension. All test programs should end in <code>-test.c</code>. All
+evaluation programs should end in <code>-eval.c</code>.</p>
+<h3 id="13-header-and-inline-files">1.3. Header and Inline Files</h3>
+<p>All header files should be self-contained. A header should include all
+other headers it needs. The definitions for template and inline functions
+should be placed in a separate <code>.inl</code> file and included at the end of the
+header. Every header should use include guards where the name of the
+include guard preprocessor macro is derived directly from the filename.
+For example, a header file named <code>foo-bar.h</code> would use the following
+include guards:</p>
+<pre><code>:::c
+#ifndef FOO_BAR_H
+#define FOO_BAR_H
+
+#endif // FOO_BAR_H
+</code></pre>
+<h2 id="2-formatting">2. Formatting</h2>
+<p>This section discusses general formatting that is common across all kinds
+of files.</p>
+<h3 id="21-line-length">2.1. Line Length</h3>
+<p>Lines in all files should in general be less than 80 characters. Using
+less than 74 characters is ideal since this is a natural width that
+enables reasonable font sizes to be used when using side-by-side code
+development with two listings on modern laptops and side-by-side code
+development with three to four listings on 24" to 27" monitors. Lines
+longer than 80 characters should be avoided unless there is a compelling
+reason to use longer lines to increase code quality.</p>
+<h3 id="22-indentation">2.2. Indentation</h3>
+<p>Absolutely no tabs are allowed. Only spaces are allowed for the purposes
+of indentation. The standard number of spaces per level of indentation is
+two. Here is an example:</p>
+<pre><code>::::c
+int gcd( int x, int y )
+{
+  while ( y != 0 ) {
+    if ( x &lt; y ) {
+      int temp = x;
+      y = temp;
+      x = y;
+    }
+    else {
+      x = x - y;
+    }
+  }
+  return x;
+}
+</code></pre>
+<h3 id="23-vertical-whitespace">2.3. Vertical Whitespace</h3>
+<p>Vertical whitspace can and should be used to separate conceptually
+distinct portions of your code. A blank line within a block of code
+serves like a paragraph break in prose: visually separating two thoughts.
+Vertical whitespace should be limited to a single blank line. Do not use
+two or more blank lines in a row.</p>
+<p>Do not include a blank line at the beginning and end of the function body
+in a function definition. So this is incorrect:</p>
+<pre><code>:::c
+int foo()
+{
+
+  stmt1;
+  return 0;
+
+}
+</code></pre>
+<p>This is correct:</p>
+<pre><code>:::c
+int foo()
+{
+  stmt1;
+  return 0;
+}
+</code></pre>
+<h3 id="24-horizontal-whitespace">2.4. Horizontal Whitespace</h3>
+<p>Absolutely no tabs are allowed. Only spaces are allowed for the purposes
+of indentation. The standard number of spaces per level of indentation is
+two. In general, horizontal whitespace should be used to separate
+distinct conceptual "tokens". Do not cram all of the characters in an
+expression together without any horizontal whitespace.</p>
+<p>There should be white space around binary operators. Here is an example:</p>
+<pre><code>:::c
+int a = b*c;   // incorrect
+int a = b * c; // correct
+</code></pre>
+<p>Try to use explicit parenthesis to make operator precendence explicit:</p>
+<pre><code>:::c
+int a = a &lt; 0 &amp;&amp; b != 0;             // incorrect
+int a = ( ( a &lt; 0 ) &amp;&amp; ( b != 0 ) ); // correct
+int a = (a &lt; 0) &amp;&amp; (b != 0);         // correct
+</code></pre>
+<p>Sometimes there can just be too many paranthesis and just too much
+horizontal white space. So the third one might actually be more readable.
+Students will have to use their judgement.</p>
+<p>In some cases, we should <em>not</em> include whitespace around an operator
+because the operator is not delimiting two distinct conceptual "tokens".
+Here are some examples:</p>
+<pre><code>:::c
+int a = obj . field;  // incorrect
+int a = obj.field;    // correct
+int a = obj -&gt; field; // incorrect
+int a = obj-&gt;field;   // correct
+obj . method( b );    // incorrect
+obj.method( b );      // correct
+obj -&gt; method( b );   // incorrect
+obj-&gt;method( b );     // correct
+</code></pre>
+<h3 id="25-variable-declarations">2.5. Variable Declarations</h3>
+<p>There should be whitespace around the assignment operator. Here is an
+example:</p>
+<pre><code>:::c
+int a=3;   // incorrect
+int a = 3; // correct
+</code></pre>
+<p>If possible, consder vertically aligning the variable names and
+assignment operators for related variables:</p>
+<pre><code>:::c
+unsigned int a     = 32;
+int*         a_ptr = &amp;a;
+</code></pre>
+<p>Never declare multiple variables in a single statement. Always use
+multiple statements. Here is an example:</p>
+<pre><code>:::c
+int a, b; // incorrect
+int a;    // correct
+int b;    // correct
+</code></pre>
+<h3 id="26-conditional-statements">2.6. Conditional Statements</h3>
+<p><code>if</code> conditional statements should look like this:</p>
+<pre><code>:::c
+if ( conditional_expression0 ) {
+  statement0;
+}
+else if ( conditional_expression1 ) {
+  statement1;
+}
+else {
+  statement2;
+}
+</code></pre>
+<p>Notice the use of spaces inside the parentheses since the <code>()</code> tokens
+should be conceptually separated from the conditional expression. We
+personally really like this style, but can also be okay to skip this
+horizontal whitespace like ths:</p>
+<pre><code>:::c
+if (conditional_expression0) {
+  statement0;
+}
+else if (conditional_expression1) {
+  statement1;
+}
+else {
+  statement2;
+}
+</code></pre>
+<p>However, it is critical to be consistent! If you use curly braces for one
+part of an if/then/else statement you must use them for all parts of the
+statement. Avoid single line if statements:</p>
+<pre><code>:::c
+if ( conditional_expression0 ) return 1; // incorrect
+if ( conditional_expression0 )           // correct
+  return 0;                              // correct
+</code></pre>
+<h3 id="27-iteration-statements">2.7. Iteration Statements</h3>
+<p><code>for</code> loops should look like this:</p>
+<pre><code>:::c
+for ( int i = 0; i &lt; size; i++ ) {
+  loop_body;
+}
+</code></pre>
+<p>Notice the extra horizontal whitespace used to separate the parentheses
+from the initialization statement and the increment statement. We
+personally really like this style, but can also be okay to skip this
+horizontal whitespace like this:</p>
+<pre><code>:::c
+for (int i = 0; i &lt; size; i++) {
+  loop_body;
+}
+</code></pre>
+<p>However, it is critical to be consistent! We really want the open curly
+brace should be on the same line as the <code>for</code> statement.</p>
+<h3 id="28-function-definitions">2.8. Function Definitions</h3>
+<p>Function definitions should look like this:</p>
+<pre><code>:::c
+int foo_bar( int a, int b )
+{
+  function_body;
+}
+</code></pre>
+<p>We encourage inserting space inside the parenthesis. We personally really
+like this style, but can also be okay to skip this horizontal whitespace
+like this:</p>
+<pre><code>:::c
+int foo_bar(int a, int b)
+{
+  function_body;
+}
+</code></pre>
+<p>However, it is critical to be consistent! Notice that for functions the
+open curly brace goes on its own line. Do not insert a space between the
+function name and the open parenthesis. So this is incorrect:</p>
+<pre><code>:::c
+// incorrect
+int foo_bar ( int a, int b )
+{
+  function_body;
+}
+</code></pre>
+<h3 id="29-function-calls">2.9. Function Calls</h3>
+<p>Function calls should usually use whitespace inside the parenthesis. For
+example:</p>
+<pre><code>:::c
+int result = gcd( 10, 15 );
+</code></pre>
+<p>If there is a single argument, sometimes it may be more appropriate to
+eliminate the whitespace inside the parenthesis. Or if it is more
+readable it might be fine to do this if the arguments are very simple.</p>
+<pre><code>:::c
+int result = gcd(10,15);
+</code></pre>
+<p>Again, the focus is on readability.</p>
+<h2 id="3-naming">3. Naming</h2>
+<h3 id="31-type-names">3.1. Type Names</h3>
+<p>For C programs, the names of user-defined types should usually be all
+lowercase, use underscores (<code>_</code>) to separate words, and use a <code>_t</code>
+suffix.</p>
+<pre><code>::c
+typedef unsigned int uint_t;
+</code></pre>
+<p>For C++ programs, the names of user-defined types should usually use
+CamelCase.</p>
+<pre><code>::c++
+class FooBar
+{
+  ...
+};
+</code></pre>
+<p>When specifying pointer types, the <code>*</code> should be placed with the type
+without whitespace:</p>
+<pre><code>:::c
+int * a_ptr; // incorrect
+int *a_ptr;  // incorrect
+int* a_ptr;  // correct
+</code></pre>
+<p>As a reminder, never declare multiple variables in a single statement.
+This is never allowed:</p>
+<pre><code>:::
+int *a_ptr, *b_ptr; // not allowed!
+</code></pre>
+<h3 id="32-variable-names">3.2. Variable Names</h3>
+<p>The names of variables should always be all lowercase with underscores
+(<code>_</code>) to separate words. Do <em>not</em> use CamelCase for variable names. For
+pointers, use a <code>_ptr</code> or <code>_p</code> suffix. For data member fields, use a <code>m_</code>
+prefix. While single letter variable names are common in the lecture
+examples, single letter variable names should be very rare in real code.</p>
+<h3 id="33-functionmethod-names">3.3. Function/Method Names</h3>
+<p>The names of free functions and methods should always be all lowercase
+with underscores (<code>_</code>) to separate words. Do <em>not</em> use CamelCase for
+function or method names.</p>
+<h2 id="4-comments">4. Comments</h2>
+<p>Though a pain to write, comments are absolutely vital to keeping our code
+readable. The following rules describe what you should comment and where.
+But remember: while comments are very important, the best code is
+self-documenting. Giving sensible names to types and variables is much
+better than using obscure names that you must then explain through
+comments. When writing your comments, write for your audience: the next
+contributor who will need to understand your code. Be generous — the next
+one may be you!</p>
+<p>Do not state the obvious. In particular, don't literally describe what
+code does, unless the behavior is nonobvious to a reader who understands
+C/C++ well. Instead, provide higher level comments that describe why the
+code does what it does, or make the code self describing.</p>
+<h3 id="41-comment-style">4.1. Comment Style</h3>
+<p>Use <code>//</code> comments. These are perfectly acceptable now in C99. Do not use
+the older <code>/* */</code> comments. Include a space after <code>//</code> before starting
+your comment:</p>
+<pre><code>:::c
+//without space, incorrect formatting
+// with space, correct formatting
+</code></pre>
+<h3 id="42-comment-location">4.2. Comment Location</h3>
+<p>Avoid trailing comments. They make lines too long and are hard to read.
+Prefer placing each comment on its own line whenever possible. So avoid
+this:</p>
+<pre><code>:::c
+if ( a &gt; b ) { // if a is greater, subtract b
+  c = a - b;
+}
+else { // if b is greater, subtract a
+  c = b - a;
+}
+</code></pre>
+<p>Prefer this instead:</p>
+<pre><code>:::c
+// if a is greater, subtract b
+if ( a &gt; b ) {
+  c = a - b;
+}
+
+// if b is greater, subtract a
+else {
+  c = b - a;
+}
+</code></pre>
+<h3 id="43-file-comments">4.3. File Comments</h3>
+<p>All files should include a "title block". This is a comment at the very
+beginning of the file which gives the name of the file and a brief
+description of the purpose and contents of the file. Title blocks should
+use the following format:</p>
+<pre><code>:::c
+//=========================================================================
+// foo-bar.h
+//=========================================================================
+// Description of the purpose and contents of this file.
+</code></pre>
+<p>The horizontal lines used in the title block should extend exactly 74
+characters (i.e., two '/' characters and 72 <code>=</code> characters). You do not
+need to duplicate comments between the <code>.h</code> and <code>.cc</code>. Often the header
+will have a description of the interface, and the source file will
+discuss the broad implementation approach.</p>
+<h3 id="44-function-comments">4.4. Function Comments</h3>
+<p>Almost every function declaration in the header should have comments
+immediately preceding it that describe what the function does and how to
+use it. These comments may be omitted only if the function is simple and
+obvious. These comments should be descriptive ("Opens the file") rather
+than imperative ("Open the file"); the comment describes the function, it
+does not tell the function what to do. In general, these comments do not
+describe how the function performs its task. Instead, that should be left
+to comments in the function definition.</p>
+<p>Every function definition in the source file should have a comment like
+this:</p>
+<pre><code>:::C
+//------------------------------------------------------------------------
+// foo_bar()
+//------------------------------------------------------------------------
+// optional high-level discussion of implementation approach
+</code></pre>
+<h3 id="45-old-comments">4.5. Old Comments</h3>
+<p>Do not leave old comments in the source file. So you must remove comments
+that were provided by the instructors.</p>
+<h2 id="5-scoping">5. Scoping</h2>
+<p>This section discusses use of local and global variables.</p>
+<h3 id="51-local-variables">5.1. Local Variables</h3>
+<p>Place a function's variables in the narrowest scope possible. C99 no
+longer requires all variables to be declared at the beginning of a
+function, so declare variables close to where they are initialized.</p>
+<h3 id="52-static-and-global-variables">5.2. Static and Global Variables</h3>
+<p>Do not use non-const static or global variables unless there is a very
+good reason to do so. Const global variables are allowed and should
+definitely be used instead of preprocessor defines.</p>
+<h2 id="6-c-pre-processor">6. C Pre-processor</h2>
+<p>Using the C pre-processor should be avoided. Use of the C pre-processor
+should usually be limited to include guards and the <code>UTST</code> macros. When
+the C pre-processor must be used, pre-processor macro names should be in
+all capital letters and use an underscore (<code>_</code>) to separate words.</p>
+<p>Do not use the C pre-processor to declare global constants. Use const
+global variables instead.</p>
+<h2 id="7-examples">7. Examples</h2>
+<p>Here is an example of an incorrectly formatted <code>for</code> loop:</p>
+<pre><code>:::c
+for (int i = 0; i &lt; n; i ++){
+  a += c;
+}
+</code></pre>
+<p>There should be a space inside the parenthesis and no space between <code>i</code>
+and <code>++</code>. There should be a space after the closing parenthesis and the
+open curly brace. Here is the same code formatted correctly:</p>
+<pre><code>:::c
+for ( int i = 0; i &lt; n; i++ ) {
+  a += c;
+}
+</code></pre>
+<p>Here is an example of an incorrectly formatted <code>if</code> statement:</p>
+<pre><code>:::c
+if (a &lt; 0 &amp;&amp; b != 0){
+  c = 1 / c;
+}
+else (x % 2 == 0){
+  ...
+}
+</code></pre>
+<p>There should be a space inside the parenthesis and we need extra
+parenthesis to make the operator precedence more explicit. We also need a
+space between the closing parenthesis and the open curly brace.</p>
+<pre><code>:::c
+if ( ( a &lt; 0 ) &amp;&amp; ( b != 0 ) ) {
+  c = 1 / c;
+}
+else ( ( x % 2 ) == 0 ) {
+  ...
+}
+</code></pre>
+<p>Once we have multiple levels of nested parenthesis, it might be more
+readable to do something like this:</p>
+<pre><code>:::c
+if ( (a &lt; 0) &amp;&amp; (b != 0) ) {
+  c = 1 / c;
+}
+else ( (x % 2) == 0 ) {
+  ...
+}
+</code></pre>
+<p>Here is an example of a poorly formatted return statement:</p>
+<pre><code>:::c
+void foo()
+{
+  ...
+  return bar( x )
+  * bar( y );
+}
+</code></pre>
+<p>Indentation should be used to make this more clear:</p>
+<pre><code>:::c
+void foo()
+{
+  ...
+  return bar( x )
+       * bar( y );
+}
+</code></pre>
+<p>This code does not include spaces around the assignment operator, and
+isn't even consistent in its formatting:</p>
+<pre><code>:::c
+double foo= b;
+int c =bar;
+double e=1;
+</code></pre>
+<p>This should look like this:</p>
+<pre><code>:::c
+double foo = b;
+int    c   = bar;
+double e   = 1;
+</code></pre>
+<p>Notice how we lined up the variable names and the assignment operators
+vertically.</p>
+<p>Here is an example of incorrectly formatted code:</p>
+<pre><code>:::c
+int gcd(int x, int y){
+  while(y!=0)
+    {
+
+      if ( x &lt; y){
+        int t=x; x= temp; x =y;
+      }
+        else
+          x = x - y;
+    }
+
+
+     return x;
+}
+</code></pre>
+<p>Here is an example of correctly formatted code:</p>
+<pre><code>:::c
+//------------------------------------------------------------------------
+// gcd()
+//------------------------------------------------------------------------
+
+int gcd( int x, int y )
+{
+  // iterate until GCD is found
+  while ( y != 0 ) {
+
+    if ( x &lt; y ) {
+      // swap x and y
+      int temp = x;
+      y = temp;
+      x = y;
+    }
+    else {
+      x = x - y;
+    }
+
+  }
+  return x;
+}
+</code></pre></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+                <p>Copyright &copy; 2024 Christopher Batten, ECE Course Staff</p>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js"></script>
+        <script src="../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
