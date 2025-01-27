@@ -16,6 +16,7 @@ theme: flatly
 
 markdown_extensions:
   - attr_list
+  - sane_lists
 
 nav:
   - Home: 'index.md'
