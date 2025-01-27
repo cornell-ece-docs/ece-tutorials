@@ -44,6 +44,14 @@
 <li>
     <a href="./" class="dropdown-item active" aria-current="page">ECE Linux Server Remote Access</a>
 </li>
+                                    
+<li>
+    <a href="../tut1-linux-cli/" class="dropdown-item">Linux Command Line Basics</a>
+</li>
+                                    
+<li>
+    <a href="../tut2-git/" class="dropdown-item">Using Git</a>
+</li>
                                 </ul>
                             </li>
                             <li class="nav-item dropdown">
@@ -69,7 +77,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a rel="next" href="../doc0-coding-style/" class="nav-link">
+                                <a rel="next" href="../tut1-linux-cli/" class="nav-link">
                                     Next <i class="fa fa-arrow-right"></i>
                                 </a>
                             </li>
@@ -125,7 +133,7 @@
 <h2 id="2-remote-access-via-terminal-emulator">2. Remote Access via Terminal Emulator</h2>
 <p>Any terminal emulator should be able to connect to ecelinux, but we recommend using PowerShell on Windows or Terminal on Mac. Both enable you to operate your computer from the command line. Moreover, they also enable secure, remote access to other systems. We will use the <code>ssh</code> command (short for secure shell), and then we will practice some simple actions like manipulating files.</p>
 <h3 id="21-starting-powershell-or-mac-terminal">2.1. Starting PowerShell or Mac Terminal</h3>
-<p>First, you must be connected to the Cornell VPN if you are off campus. To start PowerShell, click the Start menu then search for Windows PowerShell. To start Mac Terminal, go to your Applications folder and choose Utilities &gt; Terminal. You can also open Spotlight, type Terminal, and press enter.</p>
+<p>First, you must be connected to the Cornell VPN if you are off campus. To start PowerShell, click the Start menu then search for Windows PowerShell. To start Mac Terminal, go to your Applications folder and choose <em>Utilities &gt; Terminal</em>. You can also open Spotlight, type Terminal, and press enter.</p>
 <h3 id="22-logging-into-ecelinux-servers-with-powershell-or-mac-terminal">2.2. Logging into ecelinux Servers with PowerShell or Mac Terminal</h3>
 <p>After starting PowerShell or Mac Terminal, type in the following command at the command prompt:</p>
 <pre><code class="language-bash">$ ssh &lt;netid&gt;@ecelinux.ece.cornell.edu
@@ -165,7 +173,7 @@ myfile.txt
 <p>We can now open this file and edit it with <code>nano</code>:</p>
 <pre><code class="language-bash">$ nano myfile.txt
 </code></pre>
-<p>Notice that the editor shows most of the useful commands at the bottom of the terminal. The symbol \^ signifies the CONTROL key. To type any text you want, just move the insertion point around using your arrow keys. Let's add 'Hello ECE!' to the end of the file. To exit and save your changes, press CONTROL+X, Y to save, and then ENTER to use the same file name. Congrats! We can test that our file was updated with <code>cat</code>:</p>
+<p>Notice that the editor shows most of the useful commands at the bottom of the terminal. The symbol ^ signifies the CONTROL key. To type any text you want, just move the insertion point around using your arrow keys. Let's add 'Hello ECE!' to the end of the file. To exit and save your changes, press CONTROL+X, Y to save, and then ENTER to use the same file name. Congrats! We can test that our file was updated with <code>cat</code>:</p>
 <pre><code class="language-bash">$ cat myfile.txt
 Hello wget!
 Hello ECE!
@@ -184,24 +192,24 @@ Hello ECE!
 <li><a href="https://marketplace.visualstudio.com/items?itemName=mshr-h.VerilogHDL">Verilog HDL</a></li>
 </ul>
 <h3 id="32-logging-into-ecelinux-servers-with-vs-code">3.2. Logging into ecelinux Servers with VS Code</h3>
-<p>As a reminder, you must be connected to the Cornell VPN to access ecelinux off-campus. After starting VS Code, choose View &gt; Command Palette from the menubar. Enter the command <code>Remote-SSH: Connect Current Window to Host</code> in the command palette:</p>
+<p>As a reminder, you must be connected to the Cornell VPN to access ecelinux off-campus. After starting VS Code, choose <em>View &gt; Command Palette</em> from the menubar. Enter the command <code>Remote-SSH: Connect Current Window to Host</code> in the command palette:</p>
 <p><img _="," align="center" alt="Remote SSH for VS Code" src="../img/remotessh.png" width="600" /></p>
 <p>As you start typing the command, you can just click the correct option when you see it. VS Code will then ask you where to connect to. You should enter <code>netid@ecelinux.ece.cornell.edu</code>.</p>
 <p>Of course, replace netid with your Cornell NetID. If you are on Windows, then you may see a pop-up which says 'Windows Defender Firewall has blocked some features of this app.' This is not a problem. Simply click 'Cancel.' You may also see a drop down asking you to choose the operating system of the remote host. <em>Choose Linux. This is the operating system of ecelinux.</em></p>
 <p>Now VS Code should prompt you to enter your Cornell NetID password. Logging into ecelinux with VS Code for the first time may take up to a minute or two to initialize. Once the pop up dialog box goes away and you see 'SSH: ecelinux.ece.cornell.edu' in the lower left-hand corner of VS Code, then you know you are connected to the ecelinux servers.</p>
-<p>The final step is to make sure your personal VS Code extensions are also installed on the remote host. Choose View &gt; Extensions from the menubar. Instead of saying 'Install' it should now say 'Install in SSH: ecelinux.ece.cornell.edu.' Click this choice for the extensions you need. You should only need to do this once.</p>
+<p>The final step is to make sure your personal VS Code extensions are also installed on the remote host. Choose <em>View &gt; Extensions</em> from the menubar. Instead of saying 'Install' it should now say 'Install in SSH: ecelinux.ece.cornell.edu.' Click this choice for the extensions you need. You should only need to do this once.</p>
 <h3 id="34-using-vs-code">3.4. Using VS Code</h3>
-<p>VS Code includes an integrated file explorer. Choose View &gt; Explorer from the menubar. Then, click on Open Folder. VS Code will then ask you to Open File Or Folder with a default of /home/netid. Click 'OK.'</p>
+<p>VS Code includes an integrated file explorer. Choose <em>View &gt; Explorer</em> from the menubar. Then, click on Open Folder. VS Code will then ask you to Open File Or Folder with a default of /home/netid. Click 'OK.'</p>
 <p>You might see a pop-up which asks you 'Do you trust the authors of the files in this folder?' Since you will only be browsing your own files on the ecelinux server, it is fine to choose 'Yes, I trust the authors.'</p>
 <p>This will reload VS Code, and you should now see a file explorer in the left sidebar. You can easily browse your directory hierarchy, open files by clicking on them, create new files, and delete files.</p>
-<p>VS Code also includes an integrated terminal which will give you access to the Linux command line on the ecelinux servers. Choose Terminal &gt; New Terminal from the menubar. You should see the same kind of Linux command line prompt that you saw when using either PowerShell or Mac Terminal. What is cool is that we can open new VS Code tabs from the command line:</p>
+<p>VS Code also includes an integrated terminal which will give you access to the Linux command line on the ecelinux servers. Choose <em>Terminal &gt; New Terminal</em> from the menubar. You should see the same kind of Linux command line prompt that you saw when using either PowerShell or Mac Terminal. What is cool is that we can open new VS Code tabs from the command line:</p>
 <pre><code class="language-bash">$ wget https://pastebin.com/raw/xsf10vFR -O mynewfile.txt
 $ code mynewfile.txt
 </code></pre>
 <p>Notice how the text file opened in a new tab at the top, and the terminal remains at the bottom. This enables you to have easy access to editing files and the Linux command line at the same time.</p>
 <h3 id="35-troubleshooting-remote-access-via-vs-code">3.5. Troubleshooting Remote Access via VS Code</h3>
 <p>Sometimes VS Code just keeps asking you for your password forever or VS Code just hangs when you try to connect to the server. You can definitely ask the course staff for help, but you can also try to fix it on your own.</p>
-<p>The first attempt is to kill the VS Code server on the host machine (ecelinux). Choose View &gt; Command Palette from the menubar. Enter <code>Remote-SSH: Kill VS Code Server on Host</code> in the command palette.</p>
+<p>The first attempt is to kill the VS Code server on the host machine (ecelinux). Choose <em>View &gt; Command Palette</em> from the menubar. Enter <code>Remote-SSH: Kill VS Code Server on Host</code> in the command palette.</p>
 <p>The second thing to try is to delete the .vscode-server directory on the sever. How can you delete this directory if you cannot use VS Code to access the ecelinux servers? You can simply use PowerShell or Mac Terminal to log into the ecelinux servers. Once you have gained access to the Linux command line on the ecelinux servers, you can delete the .vscode-server directory like this:</p>
 <pre><code>$ rm -rf .vscode-server
 </code></pre>

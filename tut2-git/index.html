@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <meta name="author" content="ECE Course Staff">
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Using Git - ECE Common Course Tutorials</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../css/brands.min.css" rel="stylesheet">
+        <link href="../css/solid.min.css" rel="stylesheet">
+        <link href="../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/docco.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">ECE Common Course Tutorials</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href=".." class="nav-link">Home</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Tutorials</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../tut0-ecelinux/" class="dropdown-item">ECE Linux Server Remote Access</a>
+</li>
+                                    
+<li>
+    <a href="../tut1-linux-cli/" class="dropdown-item">Linux Command Line Basics</a>
+</li>
+                                    
+<li>
+    <a href="./" class="dropdown-item active" aria-current="page">Using Git</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Guides</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../doc0-coding-style/" class="dropdown-item">ECE C/C++ Coding Conventions</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../tut1-linux-cli/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../doc0-coding-style/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="1"><a href="#using-git" class="nav-link">Using Git</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#3-github-account-setup" class="nav-link">3. GitHub Account Setup</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#4-git-version-control-system" class="nav-link">4. Git Version Control System</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#6-to-do-on-your-own" class="nav-link">6. To-Do On Your Own</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="using-git">Using Git</h1>
+<h2 id="3-github-account-setup">3. GitHub Account Setup</h2>
+<p>We will be using GitHub for centralized repository hosting. You can check
+to see if you have a GitHub account on <code>github.com</code> using this link:
+<code>https://github.com/githubid</code> where <code>githubid</code> is your GitHub username on
+<code>github.com</code>. If the above link does not work, then you do not have an
+GitHub account on <code>github.com</code>. <strong>NOTE: We are using <code>github.com</code> not the
+Cornell hosted GitHub!</strong> You will need to create one here:</p>
+<ul>
+<li><a href="https://github.com/join">https://github.com/join</a></li>
+</ul>
+<p>Your NetID makes a great GitHub username on <code>github.com</code>. Be sure to use
+your Cornell University email address.</p>
+<p>Once your account is setup, please make sure you set your full name so we
+can know who you are on GitHub. Please also consider uploading a profile
+photo to GitHub; it makes it more fun to interact on GitHub if we all
+know what each other look like. Go to the following page and enter your
+first and last name in the Name field, and then consider uploading a
+profile photo.</p>
+<ul>
+<li><a href="https://github.com/settings/profile">https://github.com/settings/profile</a></li>
+</ul>
+<p>Once you have a GitHub ID, please fill out the following online so the
+instructors know the mapping from NetID to GitHub ID:</p>
+<ul>
+<li><a href="http://www.csl.cornell.edu/courses/ece2400/githubid">http://www.csl.cornell.edu/courses/ece2400/githubid</a></li>
+</ul>
+<p>Before you can begin using GitHub, you need to create an SSH key pair on
+an <code>ecelinux</code> machine and upload the corresponding SSH public key to
+GitHub. GitHub uses these keys for authentication. The course setup
+script takes care of creating an SSH key pair which you can use. View the
+contents of your public key using the following commands:</p>
+<pre><code>:::bash
+% cat ~/.ssh/ece2400-github.pub
+</code></pre>
+<p>Use the following page to upload the public key to GitHub:</p>
+<ul>
+<li><a href="https://github.com/settings/ssh">https://github.com/settings/ssh</a></li>
+</ul>
+<p>Click on <em>New SSH Key</em>, and then cut-and-paste the public key you
+displayed using cat into the key textbox. Give the key the title
+<code>ece2400-github</code>. Then click <em>Add SSH key</em>. To test things out try the
+following command:</p>
+<pre><code>:::bash
+% ssh -T git@github.com
+</code></pre>
+<p>You may see a warning about the authenticity of the host. Don’t worry,
+this is supposed to happen the first time you access GitHub using your
+new key. Just enter <code>yes</code>. The GitHub server should output some text
+including your GitHub ID. Verify that the GitHub ID is correct, and then
+you should be all set.</p>
+<h2 id="4-git-version-control-system">4. Git Version Control System</h2>
+<p>In this course, we will be using Git as our revision control and source
+code management system. Git will enable us to adopt an agile development
+methodology so you (and your group) can rapidly collaborate and iterate
+on the design, verification, and evaluation of the assignments.</p>
+<h3 id="41-fork-and-clone-a-repo-from-github">4.1. Fork and Clone a Repo from GitHub</h3>
+<p>Fork'ing a repo means making a copy of that repo for your own local use.
+We won't actually be forking repos for the programming assignments, but
+it is an easy way for you to grab some example code for the discussion
+section. Go to the example repo here:</p>
+<ul>
+<li><a href="https://github.com/cornell-ece2400/ece2400-sec01">https://github.com/cornell-ece2400/ece2400-sec01</a></li>
+</ul>
+<p>Click on the "Fork" button. Wait a few seconds and then visit the new
+copy of this repo in your own person GitHub workspace:</p>
+<ul>
+<li><code>https://github.com/githubid/ece2400-sec01</code></li>
+</ul>
+<p>Where <code>githubid</code> is your GitHubID. Now let's clone your new repo to the
+<code>ecelinux</code> machine.</p>
+<pre><code>:::bash
+% cd ${HOME}/ece2400
+% git clone git@github.com:githubid/ece2400-sec01 sec01
+% cd sec01
+% cat README.md
+</code></pre>
+<p>Where <code>githubid</code> is your GitHubID.</p>
+<h3 id="42-adding-and-committing-files-to-local-repository">4.2. Adding and Committing Files to Local Repository</h3>
+<p>Now let's add some new files to the repository. Use Micro to create a
+file named <code>warm-colors.txt</code> with three warm colors:</p>
+<pre><code>red
+orange
+yellow
+</code></pre>
+<p>Now use your favorite text editor again to create a file named
+<code>cool-colors.txt</code> with three cool colors.</p>
+<pre><code>blue
+green
+purple
+</code></pre>
+<p>Now let's add these files to our repository. First use the <code>git status</code>
+command to check on the status of the repository.</p>
+<pre><code>:::bash
+% cd ${HOME}/ece2400/sec01
+% git status
+</code></pre>
+<p>You should see that git has noticed two "untracked files" which are in
+the working directory but are not currently being tracked by git. Let's
+"add" these two files to git's "staging" area so it now knows it should
+keep track of them:</p>
+<pre><code>:::bash
+% cd ${HOME}/ece2400/sec01
+% git add warm-colors.txt
+% git add cool-colors.txt
+% git status
+</code></pre>
+<p>The status of these two files have changed. Git reports that both of the
+new files are ready to be committed. Let's go ahead and commit these
+changes into your local repository.</p>
+<pre><code>:::bash
+% cd ${HOME}/ece2400/sec01
+% git commit -m "add some colors"
+</code></pre>
+<p>Let's now use <code>echo</code> and the <code>&gt;&gt;</code> command output redirection operator to
+add <code>cyan</code> to the end of our <code>cool-colors.txt</code> file. We can then view our
+changes from the command line using <code>cat</code>, and use <code>git status</code> and then
+<code>git commit</code> to try and commit our changes.</p>
+<pre><code>:::bash
+% cd ${HOME}/ece2400/sec01
+% echo "cyan" &gt;&gt; cool-colors.txt
+% cat cool-colors.txt
+% git status
+% git commit -m "add cyan"
+</code></pre>
+<p>Git will report that there are no changes added to the commit. So even
+though Git is tracking <code>cool-colors.txt</code> and knows it has changed, we
+still must explicitly add the files we want to commit. We recommend using
+the <code>-a</code> command line option with the <code>git commit</code> command to tell Git to
+add any file which has changed and was previously added to the repository
+before doing the commit.</p>
+<pre><code>:::bash
+% cd ${HOME}/ece2400/sec01
+% git status
+% git commit -a -m "add cyan"
+</code></pre>
+<p>Now the changes are committed. You can use <code>git log</code> to see a log of the
+commits in your local repository.</p>
+<pre><code>:::bash
+% cd ${HOME}/ece2400/sec01
+% git log
+</code></pre>
+<h3 id="43-pushing-files-to-github">4.3. Pushing Files to GitHub</h3>
+<p>Note that nothing has happened on GitHub yet. GitHub does <em>not</em> know
+anything about these local changes. We need to explicitly "push" our new
+commits up to GitHub like this:</p>
+<pre><code>:::bash
+% cd ${HOME}/ece2400/sec01
+% git push
+</code></pre>
+<p>Now go to the repository page using the GitHub web interface and verify
+that there are two new files.</p>
+<ul>
+<li><code>https://github.com/githubid/ece2400-sec01</code></li>
+</ul>
+<h3 id="44-pulling-files-from-github">4.4. Pulling Files from GitHub</h3>
+<p>Let's try making a change to this repository through the GitHub
+web interface.</p>
+<ul>
+<li><code>https://github.com/githubid/ece2400-sec01</code></li>
+</ul>
+<p>Click on <em>Add file</em> and then <em>Create new file</em>. Name the file
+<code>languages.txt</code> and add a list of programming languages:</p>
+<pre><code>C
+C++
+Python
+MATLAB
+Java
+</code></pre>
+<p>Now click <em>Commit new file</em>. Verify that there is a new file in the repo
+using the GitHub web interface. Now let's "pull" these new changes from
+GitHub to your local repo on <code>ecelinux</code>:</p>
+<pre><code>:::bash
+% cd ${HOME}/ece2400/sec01
+% git pull
+% cat languages.txt
+</code></pre>
+<p>This will be the basic GitHub workflow were students first use <code>clone</code> to
+get a copy of their repository, use <code>commit -a</code> to commit their code to
+the local repository, and then use <code>pull</code> and <code>push</code> to synchronize their
+repository with the repository on GitHub.</p>
+<h2 id="6-to-do-on-your-own">6. To-Do On Your Own</h2>
+<p>If you have time, add <code>maroon</code> to the <code>warm-colors.txt</code> file you created
+earlier using either Micro. Save the file and then view your
+changes from the command line using <code>cat</code>. Then use <code>git status</code> and <code>git
+commit -a</code> to add these changes to local repository, and then use <code>git
+push</code> to push these changes up to GitHub. View the changes using the
+GitHub web interface.</p>
+<p>Then try editing a file using the GitHub web interface. Click on the
+<code>warm-colors.txt</code> file and then click on the pencil in the right-hand
+corner to edit this text file. Add another warm color. Click <em>Commit
+changes</em>. Then pull these changes to the local repository on the
+<code>ecelinux</code> server and verify that your new warm color is included.</p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+                <p>Copyright &copy; 2024 Christopher Batten, ECE Course Staff</p>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js"></script>
+        <script src="../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
