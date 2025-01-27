@@ -48,11 +48,12 @@ include guard preprocessor macro is derived directly from the filename.
 For example, a header file named `foo-bar.h` would use the following
 include guards:
 
-    :::c
-    #ifndef FOO_BAR_H
-    #define FOO_BAR_H
+```c
+#ifndef FOO_BAR_H
+#define FOO_BAR_H
 
-    #endif // FOO_BAR_H
+#endif // FOO_BAR_H
+```
 
 ## 2. Formatting
 
@@ -75,21 +76,22 @@ Absolutely no tabs are allowed. Only spaces are allowed for the purposes
 of indentation. The standard number of spaces per level of indentation is
 two. Here is an example:
 
-    ::::c
-    int gcd( int x, int y )
-    {
-      while ( y != 0 ) {
-        if ( x < y ) {
-          int temp = x;
-          y = temp;
-          x = y;
-        }
-        else {
-          x = x - y;
-        }
-      }
-      return x;
+```c
+int gcd( int x, int y )
+{
+  while ( y != 0 ) {
+    if ( x < y ) {
+      int temp = x;
+      y = temp;
+      x = y;
     }
+    else {
+      x = x - y;
+    }
+  }
+  return x;
+}
+```
 
 ### 2.3. Vertical Whitespace
 
@@ -102,23 +104,25 @@ two or more blank lines in a row.
 Do not include a blank line at the beginning and end of the function body
 in a function definition. So this is incorrect:
 
-    :::c
-    int foo()
-    {
+```c
+int foo()
+{
 
-      stmt1;
-      return 0;
+  stmt1;
+  return 0;
 
-    }
+}
+```
 
 This is correct:
 
-    :::c
-    int foo()
-    {
-      stmt1;
-      return 0;
-    }
+```c
+int foo()
+{
+  stmt1;
+  return 0;
+}
+```
 
 ### 2.4. Horizontal Whitespace
 
@@ -130,16 +134,18 @@ expression together without any horizontal whitespace.
 
 There should be white space around binary operators. Here is an example:
 
-    :::c
-    int a = b*c;   // incorrect
-    int a = b * c; // correct
+```c
+int a = b*c;   // incorrect
+int a = b * c; // correct
+```
 
 Try to use explicit parenthesis to make operator precendence explicit:
 
-    :::c
-    int a = a < 0 && b != 0;             // incorrect
-    int a = ( ( a < 0 ) && ( b != 0 ) ); // correct
-    int a = (a < 0) && (b != 0);         // correct
+```c
+int a = a < 0 && b != 0;             // incorrect
+int a = ( ( a < 0 ) && ( b != 0 ) ); // correct
+int a = (a < 0) && (b != 0);         // correct
+```
 
 Sometimes there can just be too many paranthesis and just too much
 horizontal white space. So the third one might actually be more readable.
@@ -149,98 +155,107 @@ In some cases, we should _not_ include whitespace around an operator
 because the operator is not delimiting two distinct conceptual "tokens".
 Here are some examples:
 
-    :::c
-    int a = obj . field;  // incorrect
-    int a = obj.field;    // correct
-    int a = obj -> field; // incorrect
-    int a = obj->field;   // correct
-    obj . method( b );    // incorrect
-    obj.method( b );      // correct
-    obj -> method( b );   // incorrect
-    obj->method( b );     // correct
+```c
+int a = obj . field;  // incorrect
+int a = obj.field;    // correct
+int a = obj -> field; // incorrect
+int a = obj->field;   // correct
+obj . method( b );    // incorrect
+obj.method( b );      // correct
+obj -> method( b );   // incorrect
+obj->method( b );     // correct
+```
 
 ### 2.5. Variable Declarations
 
 There should be whitespace around the assignment operator. Here is an
 example:
 
-    :::c
-    int a=3;   // incorrect
-    int a = 3; // correct
+```c
+int a=3;   // incorrect
+int a = 3; // correct
+```
 
 If possible, consder vertically aligning the variable names and
 assignment operators for related variables:
 
-    :::c
-    unsigned int a     = 32;
-    int*         a_ptr = &a;
+```c
+unsigned int a     = 32;
+int*         a_ptr = &a;
+```
 
 Never declare multiple variables in a single statement. Always use
 multiple statements. Here is an example:
 
-    :::c
-    int a, b; // incorrect
-    int a;    // correct
-    int b;    // correct
+```c
+int a, b; // incorrect
+int a;    // correct
+int b;    // correct
+```
 
 ### 2.6. Conditional Statements
 
 `if` conditional statements should look like this:
 
-    :::c
-    if ( conditional_expression0 ) {
-      statement0;
-    }
-    else if ( conditional_expression1 ) {
-      statement1;
-    }
-    else {
-      statement2;
-    }
+```c
+if ( conditional_expression0 ) {
+  statement0;
+}
+else if ( conditional_expression1 ) {
+  statement1;
+}
+else {
+  statement2;
+}
+```
 
 Notice the use of spaces inside the parentheses since the `()` tokens
 should be conceptually separated from the conditional expression. We
 personally really like this style, but can also be okay to skip this
 horizontal whitespace like ths:
 
-    :::c
-    if (conditional_expression0) {
-      statement0;
-    }
-    else if (conditional_expression1) {
-      statement1;
-    }
-    else {
-      statement2;
-    }
+```c
+if (conditional_expression0) {
+  statement0;
+}
+else if (conditional_expression1) {
+  statement1;
+}
+else {
+  statement2;
+}
+```
 
 However, it is critical to be consistent! If you use curly braces for one
 part of an if/then/else statement you must use them for all parts of the
 statement. Avoid single line if statements:
 
-    :::c
-    if ( conditional_expression0 ) return 1; // incorrect
-    if ( conditional_expression0 )           // correct
-      return 0;                              // correct
+```c
+if ( conditional_expression0 ) return 1; // incorrect
+if ( conditional_expression0 )           // correct
+  return 0;                              // correct
+```
 
 ### 2.7. Iteration Statements
 
 `for` loops should look like this:
 
-    :::c
-    for ( int i = 0; i < size; i++ ) {
-      loop_body;
-    }
+```c
+for ( int i = 0; i < size; i++ ) {
+  loop_body;
+}
+```
 
 Notice the extra horizontal whitespace used to separate the parentheses
 from the initialization statement and the increment statement. We
 personally really like this style, but can also be okay to skip this
 horizontal whitespace like this:
 
-    :::c
-    for (int i = 0; i < size; i++) {
-      loop_body;
-    }
+```c
+for (int i = 0; i < size; i++) {
+  loop_body;
+}
+```
 
 However, it is critical to be consistent! We really want the open curly
 brace should be on the same line as the `for` statement.
@@ -249,47 +264,52 @@ brace should be on the same line as the `for` statement.
 
 Function definitions should look like this:
 
-    :::c
-    int foo_bar( int a, int b )
-    {
-      function_body;
-    }
+```c
+int foo_bar( int a, int b )
+{
+  function_body;
+}
+```
 
 We encourage inserting space inside the parenthesis. We personally really
 like this style, but can also be okay to skip this horizontal whitespace
 like this:
 
-    :::c
-    int foo_bar(int a, int b)
-    {
-      function_body;
-    }
+```c
+int foo_bar(int a, int b)
+{
+  function_body;
+}
+```
 
 However, it is critical to be consistent! Notice that for functions the
 open curly brace goes on its own line. Do not insert a space between the
 function name and the open parenthesis. So this is incorrect:
 
-    :::c
-    // incorrect
-    int foo_bar ( int a, int b )
-    {
-      function_body;
-    }
+```c
+// incorrect
+int foo_bar ( int a, int b )
+{
+  function_body;
+}
+```
 
 ### 2.9. Function Calls
 
 Function calls should usually use whitespace inside the parenthesis. For
 example:
 
-    :::c
-    int result = gcd( 10, 15 );
+```c
+int result = gcd( 10, 15 );
+```
 
 If there is a single argument, sometimes it may be more appropriate to
 eliminate the whitespace inside the parenthesis. Or if it is more
 readable it might be fine to do this if the arguments are very simple.
 
-    :::c
-    int result = gcd(10,15);
+```c
+int result = gcd(10,15);
+```
 
 Again, the focus is on readability.
 
@@ -301,31 +321,35 @@ For C programs, the names of user-defined types should usually be all
 lowercase, use underscores (`_`) to separate words, and use a `_t`
 suffix.
 
-    ::c
-    typedef unsigned int uint_t;
+```c
+typedef unsigned int uint_t;
+```
 
 For C++ programs, the names of user-defined types should usually use
 CamelCase.
 
-    ::c++
-    class FooBar
-    {
-      ...
-    };
+```cpp
+class FooBar
+{
+  ...
+};
+```
 
 When specifying pointer types, the `*` should be placed with the type
 without whitespace:
 
-    :::c
-    int * a_ptr; // incorrect
-    int *a_ptr;  // incorrect
-    int* a_ptr;  // correct
+```c
+int * a_ptr; // incorrect
+int *a_ptr;  // incorrect
+int* a_ptr;  // correct
+```
 
 As a reminder, never declare multiple variables in a single statement.
 This is never allowed:
 
-    :::
-    int *a_ptr, *b_ptr; // not allowed!
+```c
+int *a_ptr, *b_ptr; // not allowed!
+```
 
 ### 3.2. Variable Names
 
@@ -363,9 +387,10 @@ Use `//` comments. These are perfectly acceptable now in C99. Do not use
 the older `/* */` comments. Include a space after `//` before starting
 your comment:
 
-    :::c
-    //without space, incorrect formatting
-    // with space, correct formatting
+```c
+//without space, incorrect formatting
+// with space, correct formatting
+```
 
 ### 4.2. Comment Location
 
@@ -373,26 +398,27 @@ Avoid trailing comments. They make lines too long and are hard to read.
 Prefer placing each comment on its own line whenever possible. So avoid
 this:
 
-    :::c
-    if ( a > b ) { // if a is greater, subtract b
-      c = a - b;
-    }
-    else { // if b is greater, subtract a
-      c = b - a;
-    }
+```c
+if ( a > b ) { // if a is greater, subtract b
+  c = a - b;
+}
+else { // if b is greater, subtract a
+  c = b - a;
+}
+```
 
 Prefer this instead:
 
-    :::c
-    // if a is greater, subtract b
-    if ( a > b ) {
-      c = a - b;
-    }
-
-    // if b is greater, subtract a
-    else {
-      c = b - a;
-    }
+```c
+// if a is greater, subtract b
+if ( a > b ) {
+  c = a - b;
+}
+// if b is greater, subtract a
+else {
+  c = b - a;
+}
+```
 
 
 ### 4.3. File Comments
@@ -402,11 +428,12 @@ beginning of the file which gives the name of the file and a brief
 description of the purpose and contents of the file. Title blocks should
 use the following format:
 
-    :::c
-    //=========================================================================
-    // foo-bar.h
-    //=========================================================================
-    // Description of the purpose and contents of this file.
+```c
+//=========================================================================
+// foo-bar.h
+//=========================================================================
+// Description of the purpose and contents of this file.
+```
 
 The horizontal lines used in the title block should extend exactly 74
 characters (i.e., two '/' characters and 72 `=` characters). You do not
@@ -428,11 +455,12 @@ to comments in the function definition.
 Every function definition in the source file should have a comment like
 this:
 
-    :::C
-    //------------------------------------------------------------------------
-    // foo_bar()
-    //------------------------------------------------------------------------
-    // optional high-level discussion of implementation approach
+```C
+//------------------------------------------------------------------------
+// foo_bar()
+//------------------------------------------------------------------------
+// optional high-level discussion of implementation approach
+```
 
 ### 4.5. Old Comments
 
@@ -469,131 +497,142 @@ global variables instead.
 
 Here is an example of an incorrectly formatted `for` loop:
 
-    :::c
-    for (int i = 0; i < n; i ++){
-      a += c;
-    }
+```c
+for (int i = 0; i < n; i ++){
+  a += c;
+}
+```
 
 There should be a space inside the parenthesis and no space between `i`
 and `++`. There should be a space after the closing parenthesis and the
 open curly brace. Here is the same code formatted correctly:
 
-    :::c
-    for ( int i = 0; i < n; i++ ) {
-      a += c;
-    }
+```c
+for ( int i = 0; i < n; i++ ) {
+  a += c;
+}
+```
 
 Here is an example of an incorrectly formatted `if` statement:
 
-    :::c
-    if (a < 0 && b != 0){
-      c = 1 / c;
-    }
-    else (x % 2 == 0){
-      ...
-    }
+```c
+if (a < 0 && b != 0){
+  c = 1 / c;
+}
+else (x % 2 == 0){
+  ...
+}
+```
 
 There should be a space inside the parenthesis and we need extra
 parenthesis to make the operator precedence more explicit. We also need a
 space between the closing parenthesis and the open curly brace.
 
-    :::c
-    if ( ( a < 0 ) && ( b != 0 ) ) {
-      c = 1 / c;
-    }
-    else ( ( x % 2 ) == 0 ) {
-      ...
-    }
+```c
+if ( ( a < 0 ) && ( b != 0 ) ) {
+  c = 1 / c;
+}
+else ( ( x % 2 ) == 0 ) {
+  ...
+}
+```
 
 Once we have multiple levels of nested parenthesis, it might be more
 readable to do something like this:
 
-    :::c
-    if ( (a < 0) && (b != 0) ) {
-      c = 1 / c;
-    }
-    else ( (x % 2) == 0 ) {
-      ...
-    }
+```c
+if ( (a < 0) && (b != 0) ) {
+  c = 1 / c;
+}
+else ( (x % 2) == 0 ) {
+  ...
+}
+```
 
 Here is an example of a poorly formatted return statement:
 
-    :::c
-    void foo()
-    {
-      ...
-      return bar( x )
-      * bar( y );
-    }
+```c
+void foo()
+{
+  ...
+  return bar( x )
+  * bar( y );
+}
+```
 
 Indentation should be used to make this more clear:
 
-    :::c
-    void foo()
-    {
-      ...
-      return bar( x )
-           * bar( y );
-    }
+```c
+void foo()
+{
+  ...
+  return bar( x )
+       * bar( y );
+}
+```
 
 This code does not include spaces around the assignment operator, and
 isn't even consistent in its formatting:
 
-    :::c
-    double foo= b;
-    int c =bar;
-    double e=1;
+```c
+double foo= b;
+int c =bar;
+double e=1;
+```
 
 This should look like this:
 
-    :::c
-    double foo = b;
-    int    c   = bar;
-    double e   = 1;
+```c
+double foo = b;
+int    c   = bar;
+double e   = 1;
+```
 
 Notice how we lined up the variable names and the assignment operators
 vertically.
 
 Here is an example of incorrectly formatted code:
 
-    :::c
-    int gcd(int x, int y){
-      while(y!=0)
-        {
+```c
+int gcd(int x, int y){
+  while(y!=0)
+    {
 
-          if ( x < y){
-            int t=x; x= temp; x =y;
-          }
-            else
-              x = x - y;
-        }
-
-
-         return x;
+      if ( x < y){
+        int t=x; x= temp; x =y;
+      }
+        else
+          x = x - y;
     }
+
+
+     return x;
+}
+```
 
 Here is an example of correctly formatted code:
 
-    :::c
-    //------------------------------------------------------------------------
-    // gcd()
-    //------------------------------------------------------------------------
+```c
+//------------------------------------------------------------------------
+// gcd()
+//------------------------------------------------------------------------
 
-    int gcd( int x, int y )
-    {
-      // iterate until GCD is found
-      while ( y != 0 ) {
+int gcd( int x, int y )
+{
+  // iterate until GCD is found
+  while ( y != 0 ) {
 
-        if ( x < y ) {
-          // swap x and y
-          int temp = x;
-          y = temp;
-          x = y;
-        }
-        else {
-          x = x - y;
-        }
-
-      }
-      return x;
+    if ( x < y ) {
+      // swap x and y
+      int temp = x;
+      y = temp;
+      x = y;
     }
+    else {
+      x = x - y;
+    }
+
+  }
+  return x;
+}
+```
