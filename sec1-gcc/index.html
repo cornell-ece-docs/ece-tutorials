@@ -365,11 +365,12 @@ We have not actually built the project yet. CMake simply establishes a database 
   &quot;file&quot;: &quot;/home/netid/ece2400-sec02/src/avg-main.c&quot;
 }
 </code></pre>
-<p>It make not seem impressive that CMake just genereates the same compile commands we were running by hand. However, it would be a pain to manage these commands for thousands of object files everytime we make a change (like changing optimization level). To execute all the build commands, just run make in the build directory:</p>
+<p>It may not seem impressive that CMake just generates the same compile commands that we ran by hand. However, it would be infeasible to manage these commands for thousands of object files everytime we make a change (like changing optimization level). To execute all the build commands, just run make in the build directory:</p>
 <pre><code class="language-bash">pwd # Should be ece2400-sec02/build
 make
 </code></pre>
-<p>If it worked, you should see the executable programs <code>ece2400-sec02/build/src/square-adhoc</code> and <code>ece2400-sec02/build/src/avg-main</code>. Try running them, and make sure they work the same. <strong>Notice that <code>ece2400-sec/build/src</code> is a different directory than <code>ece2400-sec2/src</code>.</strong> The former holds our executables, and the latter is where the source code is located. CMake by default makes the build directory mirror the source file tree.</p>
+<p>To reiterate, <code>cmake</code> generates the files needed to run <code>make</code> (GNU Make).
+If it worked, you should see the executable programs <code>ece2400-sec02/build/src/square-adhoc</code> and <code>ece2400-sec02/build/src/avg-main</code>. Try running them, and make sure they work the same. <strong>Notice that <code>ece2400-sec02/build/src</code> is a different directory than <code>ece2400-sec02/src</code>.</strong> The former holds our executables, and the latter is where the source code is located. CMake by default makes the build directory mirror the source file tree.</p>
 <h2 id="6-to-do-on-your-own">6. To-Do On Your Own</h2>
 <h3 id="61-try-clangd">6.1. Try <code>clangd</code></h3>
 <p>One benefit of using CMake is that it makes using <code>clangd</code> very easy. Simply install the <a href="https://marketplace.visualstudio.com/items?itemName=llvm-vs-code-extensions.vscode-clangd">clangd extension</a> on the remote host in VS Code. Then, your code editor should provide helpful auto-corrections as you write your code. Clangd is the number one most useful tool when managing a gigantic codebase, so you may want to read into its capabilities: <a href="https://clangd.llvm.org/">https://clangd.llvm.org/</a>.</p>
