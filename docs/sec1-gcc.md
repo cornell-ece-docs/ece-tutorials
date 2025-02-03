@@ -307,14 +307,15 @@ $ cat compile_commands.json
 }
 ```
 
-It make not seem impressive that CMake just genereates the same compile commands we were running by hand. However, it would be a pain to manage these commands for thousands of object files everytime we make a change (like changing optimization level). To execute all the build commands, just run make in the build directory:
+It may not seem impressive that CMake just generates the same compile commands that we ran by hand. However, it would be infeasible to manage these commands for thousands of object files everytime we make a change (like changing optimization level). To execute all the build commands, just run make in the build directory:
 
 ```bash
 pwd # Should be ece2400-sec02/build
 make
 ```
 
-If it worked, you should see the executable programs `ece2400-sec02/build/src/square-adhoc` and `ece2400-sec02/build/src/avg-main`. Try running them, and make sure they work the same. **Notice that `ece2400-sec/build/src` is a different directory than `ece2400-sec2/src`.** The former holds our executables, and the latter is where the source code is located. CMake by default makes the build directory mirror the source file tree.
+To reiterate, `cmake` generates the files needed to run `make` (GNU Make).
+If it worked, you should see the executable programs `ece2400-sec02/build/src/square-adhoc` and `ece2400-sec02/build/src/avg-main`. Try running them, and make sure they work the same. **Notice that `ece2400-sec02/build/src` is a different directory than `ece2400-sec02/src`.** The former holds our executables, and the latter is where the source code is located. CMake by default makes the build directory mirror the source file tree.
 
 ## 6. To-Do On Your Own
 
