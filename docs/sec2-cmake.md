@@ -22,7 +22,6 @@ Now clone the [GitHub repo](https://github.com/cornell-ece2400/ece2400-sec02-202
 
 ```bash
 $ git clone git@github.com:cornell-ece2400/ece2400-sec02-2025 ece2400-sec03
-$ git checkout sec03
 $ cd ece2400-sec03
 $ tree
 ```
