@@ -103,10 +103,6 @@
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#4-using-ctest-for-systematic-unit-testing" class="nav-link">4. Using CTest for Systematic Unit Testing</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
               </ul>
             </li>
         </ul>
@@ -117,18 +113,11 @@
 <h1 id="ece2400-section-3-c-build-and-test-frameworks">ECE2400 Section 3: C Build and Test Frameworks</h1>
 <p>In the previous discussion section, you learned how to explicitly compile
 and run C programs from the command line. You learned how to use the GNU
-C Compiler (<code>gcc</code>) to compile both a single-file that calculated the
-average of two integers and multi-file program that calculated the square
+C Compiler (<code>gcc</code>) to compile both a single-file program, as well as a multi-file program that calculated the square
 of an integer. You probably noticed that it can be tedious to have to
-carefully enter the correct commands on the command line. We also need to
-carefully track which steps need to be redone whenever we change a C
-source file. In this discussion section, we will explore using a <em>build
-framework</em> based on CMake to automate this process. In the previous
-discussion section, you also learned how to do ad-hoc testing by
-executing a function and then simply printing out the result to the
-terminal. In this discussion section, we will explore using a <em>test
-framework</em> to automate this process. Using a build and test framework is
-critical to productive system-level programming in C and C++.</p>
+carefully enter the correct commands on the command line. 
+In this discussion section, we will more closely exam the <em>GNU Make build framework</em>
+and <em>CMake build framework</em> to automate the C build process.</p>
 <h2 id="1-logging-into-ecelinux-with-vs-code">1. Logging Into <code>ecelinux</code> with VS Code</h2>
 <p>Once again, we will be using VS Code to log into the ecelinux servers:</p>
 <ul>
@@ -138,20 +127,18 @@ critical to productive system-level programming in C and C++.</p>
 <li>Use <em>View &gt; Explorer</em> to open folder on <code>ecelinux</code></li>
 <li>Use <em>View &gt; Terminal</em> to open terminal on <code>ecelinux</code></li>
 </ul>
-<p>Now clone the GitHub repo we will be using in this section using the
-following commands:</p>
+<p>Now clone the <a href="https://github.com/cornell-ece2400/ece2400-sec02-2025">GitHub repo</a> using the following commands:</p>
 <pre><code class="language-bash">$ git clone git@github.com:cornell-ece2400/ece2400-sec02-2025 ece2400-sec03
+$ git checkout sec03
 $ cd ece2400-sec03
 $ tree
 </code></pre>
 <p>The directory includes the following files:</p>
 <ul>
-<li><code>ece2400-stdlib.h</code> : ECE 2400 course standard library header</li>
-<li><code>ece2400-stdlib.c</code> : ECE 2400 course standard library implementation</li>
 <li><code>avg-main.c</code>: source and main for single-file <code>avg</code> program</li>
 <li><code>square.h</code>: header file for the <code>square</code> function</li>
 <li><code>square.c</code>: source file for the <code>square</code> function</li>
-<li><code>square-directed-test.c</code> : directed test cases for <code>square</code> function</li>
+<li><code>square-adhoc.c</code> : test driver for <code>square</code> function</li>
 </ul>
 <h2 id="2-using-makefiles-to-compile-c-programs">2. Using Makefiles to Compile C Programs</h2>
 <p>Let's remind ourselves how to explicitly compile and run a single-file C
@@ -162,7 +149,7 @@ $ ./avg-main
 <p>Let's now remove the binary so we are back to a clean directory:</p>
 <pre><code class="language-bash">$ rm -r avg-main
 </code></pre>
-<p>We will start by using a new tool called GNU make which was specifically
+<p>We will start by using a new tool called GNU Make which was specifically
 designed to help automate the process of building C programs. The key to
 using <code>make</code> is developing a <code>Makefile</code>. A <code>Makefile</code> is a plain text
 file which contains a list of <em>rules</em> which together specify how to
@@ -171,36 +158,37 @@ syntax:</p>
 <pre><code>    target : prerequisite0 prerequisite1 prerequisite2
     &lt;TAB&gt;command
 </code></pre>
-<p>A rule specifies how to generate the target file using the list of
-prerequisite files and the given Linux command. <code>make</code> is smart enough to
-know it should rerun the command if any of the prerequisites change, and
-it also knows that if one of the prerequisites does not exist then it
-needs to look for some other rule to generate that prerequisite first. It
+<p>A rule show specify how to generate the target file using the list of
+prerequisite files combined with a shell command. <code>make</code> is smart enough to
+know it should re-make the target if any of the prerequisites change, and
+it also knows that if one of the prerequisites does not exist, then it
+should try to build it first. This process occurs recursively. It
 is very important to note that <code>make</code> requires commands in a rule to
-start with a real TAB character. So you should not type the letters
+start with a real TAB character. <strong>So you should not type the letters
 <code>&lt;TAB&gt;</code>, but you should instead press the TAB key and verify that it has
 inserted a real TAB character (i.e., if you move the left/right arrows
-the cursor should jump back and forth across the TAB). This is the only
+the cursor should jump back and forth across the TAB).</strong> This is the only
 time in the course where you should use a real TAB character as opposed
 to spaces.</p>
 <p>Let's create a simple <code>Makefile</code> to compile a single-file C program. Use
 VS Code to create a file named <code>Makefile</code> with the following content:</p>
-<pre><code class="language-makefile">avg-main: avg-main.c
-&lt;TAB&gt;gcc -Wall -o avg-main avg-main.c
+<pre><code class="language-makefile">avg-main: src/avg-main.c
+&lt;TAB&gt;gcc -Wall -o avg-main $^
 
 clean:
 &lt;TAB&gt;rm -rf avg-main
 </code></pre>
-<p>We can use the newly created <code>Makefile</code> like this:</p>
+<p>In this case <code>$^</code> refers to <code>src/avg-main.c</code>.
+See <a href="https://www.gnu.org/software/make/manual/html_node/Automatic-Variables.html">GNU Automatic Variables</a> for more info.
+We can use the newly created <code>Makefile</code> like this:</p>
 <pre><code class="language-bash">$ make avg-main
 $ ./avg-main
 </code></pre>
 <p><code>make</code> will by default use the <code>Makefile</code> in the current directory.
-<code>make</code> takes a command line argument specifying what you want "make". In
-this case, we want to make the <code>avg-main</code> executable. <code>make</code> will look
+<code>make</code> takes a command line argument specifying what you want "make". <code>make</code> will look
 at all of the rules in the <code>Makefile</code> to find a rule that specifies how
 to make the <code>avg-main</code> executable. It will then check to make sure the
-prerequisites exist and that they are up-to-date, and then it will run
+prerequisites exist and that they are up-to-date. If that condition is met, it will run
 the command specified in the rule for <code>avg-main</code>. In this case, that
 command is <code>gcc</code>. <code>make</code> will output to the terminal every command it
 runs, so you should see it output the command line which uses <code>gcc</code> to
@@ -209,7 +197,7 @@ generate the <code>avg-main</code> executable.</p>
 <pre><code class="language-bash">$ make avg-main
 $ ./avg-main
 </code></pre>
-<p><code>make</code> detects that the prerequisite (i.e., <code>avg-main.c</code>) has not
+<p><code>make</code> detects that the prerequisite (i.e., <code>src/avg-main.c</code>) has not
 changed and so it does not recompile the executable. Now let's try making
 a change in the <code>avg-main.c</code> source file. Modify the <code>printf</code> statement
 as follows:</p>
@@ -219,10 +207,10 @@ as follows:</p>
 <pre><code class="language-bash">$ make avg-main
 $ ./avg-main
 </code></pre>
-<p><code>make</code> will automatically detect that the prerequisite has changed and
-recompile the executable appropriately. This ability to automatically
-track dependencies and recompile just what is necessary is a key benefit
-of using a tool like <code>make</code>. <code>Makefiles</code> can also include targets which
+<p>In this case, <code>make</code> detects that the prerequisite has changed, and hence
+recompile the executable. The ability to automatically
+track dependencies and recompile only what is necessary is the key benefit
+of using a tool like GNU Make. Makefiles can also include targets which
 are not actually files. Our example <code>Makefile</code> includes a <code>clean</code> target
 which will delete any generated executables. Let's clean up our directory
 like this:</p>
@@ -232,43 +220,57 @@ $ ls
 </code></pre>
 <h2 id="3-using-cmake-to-generate-makefiles-for-compiling-c-programs">3. Using CMake to Generate Makefiles for Compiling C Programs</h2>
 <p>While using <code>make</code> can help automate the build process, the corresponding
-<code>Makefiles</code> can quickly grow to be incredibly complicated. Creating and
-maintaining these <code>Makefiles</code> can involve significant effort. It can be
+Makefiles can grow to be incredibly complicated. Creating and
+maintaining these Makefiles can involve significant effort. It can be
 particularly challenging to ensure all of the dependencies between the
 various source and header files are always correctly captured in the
-<code>Makefile</code>. It can also be complicated to add support for code coverage,
-memory checking, and debug vs. evaluation builds.</p>
+<code>Makefile</code>. </p>
 <p>New tools have been developed to help <em>automate</em> the process of managing
-<code>Makefiles</code> (which in turn <em>automate</em> the build process). Automation is
+Makefiles (which in turn <em>automate</em> the build process). Automation is
 the key to effective software development methodologies. In this course,
 we will be using CMake as a key step in our build framework. CMake takes
-as input a simple <code>CMakeLists.txt</code> file and <em>generates</em> a sophisticated
-<code>Makefile</code> for us to use. A <code>CMakeLists.txt</code> is a plain text file with a
-list of commands that specify what tasks we would like the generated
-<code>Makefile</code> to perform.</p>
+as input a simple <code>CMakeLists.txt</code> file and <em>generates</em> a more sophisticated
+<code>Makefile</code> to use.</p>
 <p>Before getting started let's remove any files we have generated and also
 remove the <code>Makefile</code> we developed in the previous section.</p>
 <pre><code class="language-bash">$ make clean
 $ rm -f Makefile
 </code></pre>
-<p>Let's create a simple <code>CMakeLists.txt</code> that can be used to generate a
-<code>Makefile</code> which will in turn be used to compile a single-file C program.
-Use VS Code to create a file named <code>CMakeLists.txt</code> with the following
-content:</p>
-<pre><code class="language-cmake">cmake_minimum_required(VERSION 2.8...3.19)
-enable_language(C)
-add_executable( avg-main avg-main.c )
+<p>Let's inspect the provided <code>CMakeLists.txt</code> that can be used to generate a
+<code>Makefile</code> which will in turn be used to compile a single-file C program:</p>
+<pre><code class="language-bash">cat CMakeLists.txt
+
+cmake_minimum_required(VERSION 3.1)
+project(sec02 C)
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
+include_directories(include)
+add_subdirectory(src)
 </code></pre>
 <p>Line 1 specifies the CMake version we are assuming, and line 2 specifies
-that we will be using CMake with a C project. Line 3 specifies that we
-want to generate a <code>Makefile</code> that can compile an executable named
-<code>avg-main</code> form the <code>avg-main.c</code> source file. Now let's run the <code>cmake</code>
-command to generate a <code>Makefile</code> we can use to compile <code>avg-main</code>:</p>
+that we will be using CMake with a C project called <code>sec02</code>.
+Line 3 states that we will be generating the database file, so that <code>clangd</code> can work.
+The last two lines tell CMake where our code and header files live (<code>src/</code> and <code>include/</code>, respectively).</p>
+<p>Notice, that there is another required <code>CMakeLists.txt</code> inside <code>src/</code> with more information about which source files to use:</p>
+<pre><code class="language-bash">cat src/CMakeLists.txt
+
+add_library(sec02-lib 
+    square.c
+)
+
+add_executable(square-adhoc square-adhoc.c)
+target_link_libraries(square-adhoc PUBLIC
+  sec02-lib
+)
+
+add_executable(avg-main avg-main.c)
+</code></pre>
+<p>Now, let's use CMake to generate a GNU Makefile.</p>
 <pre><code class="language-bash">$ cmake .
 $ ls
 $ less Makefile
 </code></pre>
-<p>NOTE: THERE IS A DOT AFTER <code>cmake</code>! The <code>cmake</code> command will by default
+<p><strong>NOTE: THERE IS A DOT AFTER <code>cmake</code>!</strong> The <code>cmake</code> command will by default
 use the <code>CMakeLists.txt</code> in the directory given as a command line
 argument. CMake takes care of figuring out what C compilers are available
 and then generating the <code>Makefile</code> appropriately. You can see that CMake
@@ -280,156 +282,8 @@ $ ./avg-main
 <p>CMake will automatically create some useful targets like <code>clean</code>.</p>
 <pre><code class="language-bash">$ make clean
 </code></pre>
-<p>Writing a <code>CMakeLists.txt</code> is simpler than writing a <code>Makefile</code>,
-especially when we start working with many files.</p>
-<h2 id="4-using-ctest-for-systematic-unit-testing">4. Using CTest for Systematic Unit Testing</h2>
-<p>So far we have been using "ad-hoc testing". For example, the <code>main</code>
-function in <code>avg-main.c</code> will execute the <code>avg</code> function with one set of
-inputs and then print the result to the terminal. If it is not what we
-expected, we can debug our program until it meets our expectations.
-Unfortunately, ad-hoc testing is error prone and not easily reproducible.
-If you later make a change to your implementation, you would have to take
-another look at the output to ensure your implementation still works. If
-another developer wants to understand your implementation and verify that
-it is working, he or she would also need to take a look at the output and
-think hard about what is the expected result. Ad-hoc testing is usually
-verbose, which makes it error prone, and does not use any kind of
-standard test output. While ad-hoc testing might be feasible for very
-simple implementations, it is obviously not a scalable approach when
-developing the more complicated implementations we will tackle in this
-course.</p>
-<p>New tools have been developed to help automate the process of testing
-implementations. These tools provide a <em>systematic</em> way to do automated
-unit testing including standardized naming conventions, test output, and
-test drivers. In this course, we will be using CTest as a key step in our
-test framework. CTest elegantly integrates with CMake to create a unified
-built and test framework. Each unit test will be a stand-alone test
-program. The following is an example of a unit test program for the
-<code>square</code> function we saw in the last discussion section:</p>
-<pre><code class="language-c">#include &quot;square.h&quot;
-#include &quot;ece2400-stdlib.h&quot;
-#include &lt;stdio.h&gt;
-
-void test_case_1_basic()
-{
-  printf(&quot;\n%s\n&quot;, __func__  );
-  ECE2400_CHECK_INT_EQ( square( 2 ), 4 );
-}
-
-int main( int argc, char* argv[] )
-{
-  __n = ( argc == 1 ) ? 0 : atoi( argv[1] );
-
-  if ( (__n &lt;= 0) || (__n == 1) )
-    test_case_1_basic();
-
-  printf( &quot;\n&quot; );
-  return __failed;
-}
-</code></pre>
-<p>Our test programs will consist of a number of <em>test cases</em>. Each test
-case is a separate function which should focus on testing a specific
-subset of inputs. In this example, test case 1 tests very basic
-functionality. Each test case should start with a statement similar to
-line 7. <code>__func__</code> is a built-in variable which contains the function
-name, so these lines basically print out the name of the function. Each
-test case should then use a series of <code>ECE2400_CHECK</code> macros to check
-that the implementation produces the expected results. For example, on
-line 8 we check that the average of 10 and 20 is 15. If the check passes,
-then the macro prints out the values, and we move on to the next test
-check. If the check fails, then the macro prints out an error message,
-sets the global <code>__failed</code> variable, and returns ending that test case.
-The return value enables our test program to inform CTest of whether or
-not all of our test cases passed of failed. The main function's job is to
-simply call each test case function. Note that we get a single command
-line argument which specifies which test case we want to run. If we do
-not specify a command line argument then we run all of the test cases.</p>
-<p>We have provided the above test program in the repository for this
-discussion section. To use CTest, we need to tell it about this new test
-program. We can do this by simply adding a new line to our
-<code>CMakeLists.txt</code> file. Here is an example <code>CMakeLists.txt</code> file:</p>
-<pre><code class="language-cmake">cmake_minimum_required(VERSION 2.8...3.19)
-enable_language(C)
-enable_testing()
-
-add_executable( square-directed-test square-directed-test.c square.c ece2400-stdlib.c )
-add_test( square-directed-test square-directed-test )
-</code></pre>
-<p>Line 3 tells CMake to turn on support for testing with CTest. Line 5
-specifies how to build the <code>square-directed-test</code> test program. Note we
-need to link in the implementation of the course library because
-<code>square-directed-test.c</code> uses it. Line 9 tells CMake that
-<code>square-directed-test</code> is a test that should be managed by CTest. Modify
-your <code>CMakeLists.txt</code> file to look like what is given above, rerun cmake,
-build the test, and run it.</p>
-<pre><code class="language-bash">$ cmake .
-$ make square-directed-test
-$ ./square-directed-test
-$ ./square-directed-test 1
-</code></pre>
-<p>The command <code>./square-directed-test</code> runs all test cases defined in
-<code>square-directed-test</code> and does not print anything when the test case
-passes. If you want to see more information about the passing assertions,
-you can zoom in to a specific test case (e.g., test case 1) using
-<code>./square-directed-test 1</code>. We will also be doing extensive <em>directed
-testing</em> and <em>random testing</em>. In directed testing, you explicitly use
-test assertions to test as many corner cases as possible. In random
-testing, you use random input values and compare the output to some
-golden "reference" implementation to hopefully catch bugs missed in your
-directed testing.</p>
-<p>CMake provides a <code>test</code> target which can run all of the tests and
-provides a summary.</p>
-<pre><code class="language-bash">$ make test
-</code></pre>
-<p>It is always a good idea to occasionally force a test to fail to ensure
-your test framework is behaving correctly. Use VS Code to change file
-<code>square.c</code> to look like this:</p>
-<pre><code class="language-c">#include &quot;avg.h&quot;
-
-int square( int x )
-{
-  return x * x * x;
-}
-</code></pre>
-<p>Note how we are returning the cube instead of the square of <code>x</code>. Then
-rebuild and rerun the test like this:</p>
-<pre><code class="language-bash">$ make square-directed-test
-$ make test
-$ ./square-directed-test
-</code></pre>
-<p>You should see the test failing in the test summary, and then see
-additional information about the failing test assertion when you
-explicitly run the test program.</p>
-<p>The ECE 2400 course standard library provides <code>ECE2400_DEBUG</code>, a macro
-that allows you to print out extra information for debugging purposes.
-One advantage of using the debug macro over <code>printf</code> is that this macro
-incurs zero run time overhead in the evaluation build. Indeed, this macro
-is simply replaced with a semi-colon when the build type is specified as
-<code>eval</code>. That means the same implementation of your <code>sqrt</code> or <code>pow</code>
-function can be reused for evaluation purposes without removing all
-debugging <code>printf</code>s first. To use the debug macro, change file <code>square.c</code>
-to look like this:</p>
-<pre><code class="language-c">#include &quot;square.h&quot;
-#include &quot;ece2400-stdlib.h&quot;
-
-int square( int x )
-{
-  ECE2400_DEBUG(&quot;square( %d )&quot;, x);
-  int result = x * x;
-  ECE2400_DEBUG(&quot;result is %d&quot;, result);
-  return result;
-}
-</code></pre>
-<p>Then rebuild and rerun the test like this:</p>
-<pre><code class="language-bash">$ make square-directed-test
-$ ./square-directed-test
-$ ./square-directed-test 1
-</code></pre>
-<p>Note how the debug info is suppressed when you are not zooming into a
-specific test case. You should see two lines starting with <code>[ -info- ]</code>
-in the output, which corresponds to the debug macro we added in
-<code>square.c</code>. This info line tells the inputs and outputs to the <code>square</code>
-function.</p></div>
+<p>With some practice, writing a <code>CMakeLists.txt</code> is simpler than writing a <code>Makefile</code>,
+especially when we start working with a large codebase.</p></div>
             </div>
         </div>
 
