@@ -237,7 +237,7 @@ $ rm -f Makefile
 </code></pre>
 <p>Let's inspect the provided <code>CMakeLists.txt</code> that can be used to generate a
 <code>Makefile</code> which will in turn be used to compile a single-file C program:</p>
-<pre><code class="language-bash">cat CMakeLists.txt
+<pre><code class="language-bash">$ cat CMakeLists.txt
 
 cmake_minimum_required(VERSION 3.1)
 project(sec02 C)
@@ -251,7 +251,7 @@ that we will be using CMake with a C project called <code>sec02</code>.
 Line 3 states that we will be generating the database file, so that <code>clangd</code> can work.
 The last two lines tell CMake where our code and header files live (<code>src/</code> and <code>include/</code>, respectively).</p>
 <p>Notice, that there is another required <code>CMakeLists.txt</code> inside <code>src/</code> with more information about which source files to use:</p>
-<pre><code class="language-bash">cat src/CMakeLists.txt
+<pre><code class="language-bash">$ cat src/CMakeLists.txt
 
 add_library(sec02-lib 
     square.c
