@@ -21,7 +21,7 @@ Once again, we will be using VS Code to log into the ecelinux servers:
 Now clone the [GitHub repo](https://github.com/cornell-ece2400/ece2400-sec02-2025) using the following commands:
 
 ```bash
-$ git clone git@github.com:cornell-ece2400/ece2400-sec02-2025 ece2400-sec03
+$ git clone --branch sec03 git@github.com:cornell-ece2400/ece2400-sec02-2025 ece2400-sec03
 $ cd ece2400-sec03
 $ tree
 ```
