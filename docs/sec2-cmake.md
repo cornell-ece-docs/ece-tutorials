@@ -169,7 +169,7 @@ Let's inspect the provided `CMakeLists.txt` that can be used to generate a
 `Makefile` which will in turn be used to compile a single-file C program:
 
 ```bash
-cat CMakeLists.txt
+$ cat CMakeLists.txt
 
 cmake_minimum_required(VERSION 3.1)
 project(sec02 C)
@@ -187,7 +187,7 @@ The last two lines tell CMake where our code and header files live (`src/` and `
 Notice, that there is another required `CMakeLists.txt` inside `src/` with more information about which source files to use:
 
 ```bash
-cat src/CMakeLists.txt
+$ cat src/CMakeLists.txt
 
 add_library(sec02-lib 
     square.c
