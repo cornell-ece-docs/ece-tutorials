@@ -1,4 +1,4 @@
-# ECE 2400 Discussion Section Wk2: Compiling and Running C Programs
+# Section 2: Compiling and Running C Programs
 
 
 This discussion section serves as gentle introduction to the basics of

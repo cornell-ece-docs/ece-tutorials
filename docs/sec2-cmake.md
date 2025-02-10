@@ -1,4 +1,4 @@
-# ECE2400 Section 3: C Build and Test Frameworks
+# Section 3: C Build and Test Frameworks
 
 In the previous discussion section, you learned how to explicitly compile
 and run C programs from the command line. You learned how to use the GNU
