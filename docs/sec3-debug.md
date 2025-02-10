@@ -5,7 +5,7 @@ test frameworks to help automate the process of compiling and verifying
 your programs. In this discussion, we will continue to learn about new
 tools that can help us better debug, test, and format our programs.
 
-## 1. Logging Into `ecelinux` with VS Code
+## 1. Getting the Code
 
 Once again, we will be using VS Code to log into the ecelinux servers:
 
@@ -15,10 +15,14 @@ Once again, we will be using VS Code to log into the ecelinux servers:
  - Use _View > Explorer_ to open folder on `ecelinux`
  - Use _View > Terminal_ to open terminal on `ecelinux`
 
-Now clone the [GitHub repo](https://github.com/cornell-ece2400/ece2400-sec02-2025/tree/sec04) using the following commands:
+First, fork the repositiory to your own GitHub profile: [https://github.com/cornell-ece2400/ece2400-sec02-2025/fork](https://github.com/cornell-ece2400/ece2400-sec02-2025/fork)
+
+**Uncheck the box *Copy the main branch only*. We want all the branches!**
+
+Now clone your forked version of the repo using the following commands (replace `your-github`):
 
 ```bash
-$ git clone --branch sec04 git@github.com:cornell-ece2400/ece2400-sec02-2025 ece2400-sec04
+$ git clone --branch sec04 git@github.com:your-github/ece2400-sec02-2025 ece2400-sec04
 $ cd ece2400-sec04
 $ tree
 ```
@@ -233,56 +237,35 @@ you can still see that it includes steps to first compile
 `avg-main.c`, run it, and check the output is `15`.
 
 
-TODO: here onward
-```
-    gcc -g -coverage -o avg-test avg-test.c ece2400-stdlib.c
-    ./avg-test
-```
-
-and then commands to generate and display coverage statistics:
-
-    ::text
-    lcov --capture --directory . --output-file coverage.info
-    lcov --list coverage.info
-
-Let's start by reintroducing the original bug in the `avg` function, so
-modify `avg-test.c` like this:
-
-    ::c
-    int avg( int x, int y )
-    {
-      int sum = x + x;
-      return sum / 2;
-    }
-
-Then go ahead and commit all of the work you have done in this tutorial,
-then push your local commits to the remote repository on GitHub. As a
+Go ahead and commit all of the work you have done in this tutorial.
+Then, push your local commits to your forked repository on GitHub. As a
 reminder these are the appropriate git commands:
 
-    % cd ${HOME}/ece2400/sec04
-    % git status
-    % git commit -a -m "working on sec04"
-    % git push
+```bash
+$ git add -u
+$ git commit -a -m "working on sec04"
+$ git push
+```
 
 Revisit the GitHub Actions page for this repository.
 
- - `https://github.com/githubid/ece2400-sec04/actions`
+ - `https://github.com/your-github/ece2400-sec04/actions`
 
-Click on the current commit "working on sec04", then click on SEC04, then
+Click on the current commit "working on sec04", and then
 watch as GitHub Actions brings up a virtual machine and runs all the
-steps to compile and test your code. You should see GitHub Actions
-failing with a red X. If you click on "avg test" you can see the specific
-failure message. Now go ahead and fix your code on `ecelinux`, commit and
+steps to compile and test your code. If you click on "build" job, you can see the specific
+failure or pass message. If you still need to, fix your code on `ecelinux`, commit and
 push your fix, and verify your code is now passing the tests on GitHub
 Actions.
 
 Note, you should _always_ test your code directly on `ecelinux` first. Do
 not use GitHub Actions as the primary way to run your tests. GitHub
-Actions is only for continuous integration testing.
+Actions is only for continuous integration testing. In this economy,
+you can very quickly run out of [Actions minutes](https://docs.github.com/en/billing/managing-billing-for-your-products/managing-billing-for-github-actions/about-billing-for-github-actions).
 
 ## 5. To-Do On Your Own
 
-If you have time, try compiling `src/square-adhoc.c` in the section 4 repository
+If you have time, try compiling `src/square-adhoc.c` in the repository
 and executing the resulting binary. You make need to use CMake. Use GDB
 debugging to find the bug and fix it.
 
