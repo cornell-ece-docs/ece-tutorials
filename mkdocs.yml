@@ -26,3 +26,7 @@ nav:
     - 'tut2-git.md'
   - Guides:
     - 'doc0-coding-style.md'
+  - ECE2400:
+    - 'sec1-gcc.md'
+    - 'sec2-cmake.md'
+    - 'sec3-debug.md'
