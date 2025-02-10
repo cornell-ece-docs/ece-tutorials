@@ -153,11 +153,11 @@ make them the most productive coders. However, students should also
 not underestimate the power of attaching a debugger to your program.</p>
 <p>Let's start by compiling the single-file program that to test our ubiquitous <code>avg</code>
 function:</p>
-<pre><code class="language-bash">$ gcc -Wall -g -o avg-main src/avg-main.c
-$ ./avg-test
+<pre><code class="language-bash">$ gcc -Wall -g -O0 -o avg-main src/avg-main.c
+$ ./avg-main
 </code></pre>
-<p>Notice how we include the <code>-g</code> option to turn on support for debugging.
-This code has a bug and should fail the test. Let's start by using printf
+<p>Notice how we include the <code>-g -O0</code> options for debugging.
+This code has a bug and should give the wrong output. Let's start by using printf
 debugging. Add some extra printfs to observe the state of the program as
 it executes.</p>
 <pre><code class="language-c">int avg(int x, int y) {
@@ -175,7 +175,7 @@ and rerun the program.</p>
 <p>Let's now try tracing the execution of this program using GDB. First,
 remove the extra printfs, undo your bug fix, and then recompile. Then you
 can start GDB like this</p>
-<pre><code class="language-bash">$ gdb -tui avg-test
+<pre><code class="language-bash">$ gdb -tui avg-main
 </code></pre>
 <p>GDB will drop you into a GDB "prompt" which you can use to interactively
 execute your program. Your source code will show up at the top, and the
@@ -250,14 +250,14 @@ course coding conventions. You can run <code>clang-format</code> like this;</p>
 </code></pre>
 <p><code>clang-format</code> will output the autoformatted source code. To really see
 this in action though we need to write some poorly formatted code! Modify
-the <code>avg</code> function in <code>avg-test.c</code> to look like this:</p>
+the <code>avg</code> function in <code>avg-main.c</code> to look like this:</p>
 <pre><code class="language-c">    int avg( int x, int y) {
       int sum = x + y;
         return sum/2; }
 </code></pre>
 <p>The space before/after parenthesis is not consistent, and the curly braces are
 on the wrong lines. Run <code>clang-format</code> again like this:</p>
-<pre><code class="language-bash">$ clang-format -i src/avg-main.c
+<pre><code class="language-bash">$ clang-format src/avg-main.c
 </code></pre>
 <p>Verify that the code is beautiful again. Note that we are not actually
 modifying the code, just outputting the autoformatted code to the console.
@@ -295,12 +295,12 @@ you can still see that it includes steps to first compile
 Then, push your local commits to your forked repository on GitHub. As a
 reminder these are the appropriate git commands:</p>
 <pre><code class="language-bash">$ git add -u
-$ git commit -a -m &quot;working on sec04&quot;
+$ git commit -m &quot;working on sec04&quot;
 $ git push
 </code></pre>
 <p>Revisit the GitHub Actions page for this repository.</p>
 <ul>
-<li><code>https://github.com/your-github/ece2400-sec04/actions</code></li>
+<li><code>https://github.com/your-github/ece2400-sec02-2025/actions</code></li>
 </ul>
 <p>Click on the current commit "working on sec04", and then
 watch as GitHub Actions brings up a virtual machine and runs all the
