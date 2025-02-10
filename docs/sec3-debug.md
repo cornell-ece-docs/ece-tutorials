@@ -243,7 +243,11 @@ reminder these are the appropriate git commands:
 
 ```bash
 $ git add -u
-$ git commit -m "working on sec04"
+$ git commit -m "fix sec04 code"
+$ git push
+$ git checkout main
+$ git pull
+$ git merge sec04
 $ git push
 ```
 
