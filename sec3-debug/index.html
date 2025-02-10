@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <meta name="author" content="ECE Course Staff">
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Section 4: C Debugging, Testing, Formatting - ECE Common Course Tutorials</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../css/brands.min.css" rel="stylesheet">
+        <link href="../css/solid.min.css" rel="stylesheet">
+        <link href="../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/docco.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">ECE Common Course Tutorials</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href=".." class="nav-link">Home</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Tutorials</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../tut0-ecelinux/" class="dropdown-item">ECE Linux Server Remote Access</a>
+</li>
+                                    
+<li>
+    <a href="../tut1-linux-cli/" class="dropdown-item">Linux Command Line Basics</a>
+</li>
+                                    
+<li>
+    <a href="../tut2-git/" class="dropdown-item">Using Git</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Guides</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../doc0-coding-style/" class="dropdown-item">ECE C/C++ Coding Conventions</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="1"><a href="#section-4-c-debugging-testing-formatting" class="nav-link">Section 4: C Debugging, Testing, Formatting</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#1-getting-the-code" class="nav-link">1. Getting the Code</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#2-using-gdb-for-debugging" class="nav-link">2. Using GDB for Debugging</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#3-using-clang-format-for-autoformatting" class="nav-link">3. Using clang-format for Autoformatting</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#4-using-github-actions-for-continuous-integration" class="nav-link">4. Using GitHub Actions for Continuous Integration</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#5-to-do-on-your-own" class="nav-link">5. To-Do On Your Own</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="section-4-c-debugging-testing-formatting">Section 4: C Debugging, Testing, Formatting</h1>
+<p>In the previous discussion section, you learned how to use C build and
+test frameworks to help automate the process of compiling and verifying
+your programs. In this discussion, we will continue to learn about new
+tools that can help us better debug, test, and format our programs.</p>
+<h2 id="1-getting-the-code">1. Getting the Code</h2>
+<p>Once again, we will be using VS Code to log into the ecelinux servers:</p>
+<ul>
+<li>Start VS Code</li>
+<li>Use <em>View &gt; Command Palette</em> to execute <em>Remote-SSH: Connect Current Window to Host...</em></li>
+<li>Enter <code>netid@ecelinux.ece.cornell.edu</code></li>
+<li>Use <em>View &gt; Explorer</em> to open folder on <code>ecelinux</code></li>
+<li>Use <em>View &gt; Terminal</em> to open terminal on <code>ecelinux</code></li>
+</ul>
+<p>First, fork the repositiory to your own GitHub profile: <a href="https://github.com/cornell-ece2400/ece2400-sec02-2025/fork">https://github.com/cornell-ece2400/ece2400-sec02-2025/fork</a></p>
+<p><strong>Uncheck the box <em>Copy the main branch only</em>. We want all the branches!</strong></p>
+<p>Now clone your forked version of the repo using the following commands (replace <code>your-github</code>):</p>
+<pre><code class="language-bash">$ git clone --branch sec04 git@github.com:your-github/ece2400-sec02-2025 ece2400-sec04
+$ cd ece2400-sec04
+$ tree
+</code></pre>
+<p>The directory includes the following files:</p>
+<ul>
+<li><code>avg-main.c</code>: source and main for single-file <code>avg</code> program</li>
+<li><code>square.h</code>: header file for the <code>square</code> function</li>
+<li><code>square.c</code>: source file for the <code>square</code> function</li>
+<li><code>square-adhoc.c</code> : test driver for <code>square</code> function</li>
+</ul>
+<h2 id="2-using-gdb-for-debugging">2. Using GDB for Debugging</h2>
+<p>There are two kinds of C/C++ programmers in the world: printf debuggers
+and GDB debuggers. Students should use whichever debugging techniques
+make them the most productive coders. However, students should also
+not underestimate the power of attaching a debugger to your program.</p>
+<p>Let's start by compiling the single-file program that to test our ubiquitous <code>avg</code>
+function:</p>
+<pre><code class="language-bash">$ gcc -Wall -g -o avg-main src/avg-main.c
+$ ./avg-test
+</code></pre>
+<p>Notice how we include the <code>-g</code> option to turn on support for debugging.
+This code has a bug and should fail the test. Let's start by using printf
+debugging. Add some extra printfs to observe the state of the program as
+it executes.</p>
+<pre><code class="language-c">int avg(int x, int y) {
+  printf(&quot;x = %d, y = %d\n&quot;, x, y);
+  int sum = x - y;
+  printf(&quot;sum = %d\n&quot;, sum);
+  return sum / 2;
+}
+</code></pre>
+<p>You should be able to see that the value for the <code>sum</code> variable is
+incorrect, but the value for the <code>x</code> and <code>y</code> variables are correct. This
+means we can narrow our focus to line 3 in the above code snippet.
+Hopefully, you should be able to spot the bug. Fix the bug, recompile,
+and rerun the program.</p>
+<p>Let's now try tracing the execution of this program using GDB. First,
+remove the extra printfs, undo your bug fix, and then recompile. Then you
+can start GDB like this</p>
+<pre><code class="language-bash">$ gdb -tui avg-test
+</code></pre>
+<p>GDB will drop you into a GDB "prompt" which you can use to interactively
+execute your program. Your source code will show up at the top, and the
+GDB prompt is at the bottom. Here are some useful GDB commands:</p>
+<ul>
+<li><code>break location</code> : set a breakpoint</li>
+<li><code>run</code> : start running the program</li>
+<li><code>record</code> : start recording the execution for reverse debugging</li>
+<li><code>step</code> : execute the next C statement, step into a function call</li>
+<li><code>next</code> : execute the next C statement, do not step into a function call</li>
+<li><code>rs</code> : reserve step, undo the execution of current C statement</li>
+<li><code>print var</code> : print a C variable</li>
+<li><code>continue</code> : continue on to the next breakpoint</li>
+<li><code>quit</code> : exit GDB</li>
+<li><code>refresh</code> : refresh the source code display</li>
+</ul>
+<p>GDB is very sophisticated so of course there are many more commands you
+can use, but these are enough to get started. Let's start by just running
+the program in GDB:</p>
+<pre><code>(gdb) run
+</code></pre>
+<p>Now let's try again, but first let's set a breakpoint to tell GDB to stop
+at a certain function or line in the program. The following will set a
+breakpoint at the beginning of the <code>main</code> function.</p>
+<pre><code>(gdb) break main
+</code></pre>
+<p>You can see a little <code>b+</code> marker in the margin next to the first
+statement in the <code>main</code> function indicating the location of the
+breakpoint. You might need to use <code>refresh</code> to get GDB to refresh the
+source code display. We can now use <code>run</code> to start the program running.
+The execution should stop at the beginning of the function <code>main</code>. You
+should see the first line of the function highlighted.</p>
+<pre><code>(gdb) refresh
+(gdb) run &gt; temp
+</code></pre>
+<p>We are using <code>&gt; temp</code> so that any output from printf goes to a file and
+does not mess up the source code display. We can use <code>record</code> to save the computer's state after every instruction.
+Then, we can step through the
+execution of each C statement using the <code>step</code> command.</p>
+<pre><code>(gdb) record
+(gdb) step
+</code></pre>
+<p>Keep using <code>step</code> until you get into the <code>avg</code> function You can print out
+the value of any variable using the <code>print</code> command:</p>
+<pre><code>(gdb) print x
+(gdb) print y
+(gdb) print sum
+</code></pre>
+<p>You can also step backwards using the <code>rs</code> command:</p>
+<pre><code>(gdb) rs
+</code></pre>
+<p>Try stepping forward and backwards through the <code>avg</code> function and print
+out various variables to see how they change during the execution. You
+can use <code>quit</code> to exit.</p>
+<pre><code>(gdb) quit
+</code></pre>
+<p>Now fix the bug and rerun the test.</p>
+<h2 id="3-using-clang-format-for-autoformatting">3. Using <code>clang-format</code> for Autoformatting</h2>
+<p>The course coding conventions are located here:</p>
+<ul>
+<li><a href="https://cornell-ece-docs.github.io/ece-tutorials/doc0-coding-style/">https://cornell-ece-docs.github.io/ece-tutorials/doc0-coding-style/</a></li>
+</ul>
+<p>Following these conventions and indeed <em>any</em> coding conventions can be
+quite tedious. Many software companies and open-source software projects
+use code formatters to automate the process of formatting their code
+to the style guide. One such tool is called <code>clang-format</code>. This
+tool takes a style file that specifies the coding conventions and then
+tries to reformat your code so it adheres to the style file. We have
+provided you a style file named <code>.clang-format</code> that adheres to the
+course coding conventions. You can run <code>clang-format</code> like this;</p>
+<pre><code class="language-bash">$ clang-format -i src/avg-main.c
+</code></pre>
+<p><code>clang-format</code> will output the autoformatted source code. To really see
+this in action though we need to write some poorly formatted code! Modify
+the <code>avg</code> function in <code>avg-test.c</code> to look like this:</p>
+<pre><code class="language-c">    int avg( int x, int y) {
+      int sum = x + y;
+        return sum/2; }
+</code></pre>
+<p>The space before/after parenthesis is not consistent, and the curly braces are
+on the wrong lines. Run <code>clang-format</code> again like this:</p>
+<pre><code class="language-bash">$ clang-format -i src/avg-main.c
+</code></pre>
+<p>Verify that the code is beautiful again. Note that we are not actually
+modifying the code, just outputting the autoformatted code to the console.
+If you <code>cat</code> the source code it still is not formatted correctly:</p>
+<pre><code class="language-bash">$ cat src/avg-main.c
+</code></pre>
+<p>You can use the <code>-i</code> command line option to autoformat the code
+"in-place"</p>
+<pre><code class="language-bash">$ clang-format -i src/avg-main.c
+</code></pre>
+<p>With autoformatting, students no longer have any excuse for poorly
+formatted code! However, do keep in mind that the autoformatter does not
+fix <em>everything</em>. This is where <a href="https://clangd.llvm.org/">clangd</a> and <code>.gitignore</code> comes in.
+Those two tools can help you with your variables names and prevent you from committing build files.
+Students will still need to ensure:</p>
+<ul>
+<li>no irrelevant instructor supplied comments are included</li>
+<li>an appropriate amount of comments are included (not too little, not too much!)</li>
+</ul>
+<h2 id="4-using-github-actions-for-continuous-integration">4. Using GitHub Actions for Continuous Integration</h2>
+<p>What is the point of test cases and formatting standards if people can
+push sloppy code to your GitHub Repo anyways?
+Continuous integration is the process of <em>continually</em> integrating your code 
+changes with your tests. It enfornces some level of code quality, before it is committed to your main repository branch.
+We will be using GitHub Actions to facilitate continuous integration. GitHub Actions will automatically run
+all tests for a project every time code is pushed to GitHub.</p>
+<p>To start, you need to enable GitHub Actions with a workflow file. We have already created one
+of those files for you, and you can see it here:</p>
+<pre><code class="language-bash">$ cat .github/workflows/actions.yml
+</code></pre>
+<p>Although it is not important to understand the details of this YAML file,
+you can still see that it includes steps to first compile
+<code>avg-main.c</code>, run it, and check the output is <code>15</code>.</p>
+<p>Go ahead and commit all of the work you have done in this tutorial.
+Then, push your local commits to your forked repository on GitHub. As a
+reminder these are the appropriate git commands:</p>
+<pre><code class="language-bash">$ git add -u
+$ git commit -a -m &quot;working on sec04&quot;
+$ git push
+</code></pre>
+<p>Revisit the GitHub Actions page for this repository.</p>
+<ul>
+<li><code>https://github.com/your-github/ece2400-sec04/actions</code></li>
+</ul>
+<p>Click on the current commit "working on sec04", and then
+watch as GitHub Actions brings up a virtual machine and runs all the
+steps to compile and test your code. If you click on "build" job, you can see the specific
+failure or pass message. If you still need to, fix your code on <code>ecelinux</code>, commit and
+push your fix, and verify your code is now passing the tests on GitHub
+Actions.</p>
+<p>Note, you should <em>always</em> test your code directly on <code>ecelinux</code> first. Do
+not use GitHub Actions as the primary way to run your tests. GitHub
+Actions is only for continuous integration testing. In this economy,
+you can very quickly run out of <a href="https://docs.github.com/en/billing/managing-billing-for-your-products/managing-billing-for-github-actions/about-billing-for-github-actions">Actions minutes</a>.</p>
+<h2 id="5-to-do-on-your-own">5. To-Do On Your Own</h2>
+<p>If you have time, try compiling <code>src/square-adhoc.c</code> in the repository
+and executing the resulting binary. You make need to use CMake. Use GDB
+debugging to find the bug and fix it.</p>
+<p>After fixing the bug, add to the GitHub Actions workflow file with
+correctness checks for <code>src/square-adhoc.c</code>.</p>
+<p>Finally, update the <code>.github/workflows/actions.yml</code> file to check that
+any committed code is properly formatted. Maybe you could even use a GitHub
+Action from the <a href="https://github.com/marketplace?type=actions">Actions Marketplace</a>.</p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+                <p>Copyright &copy; 2024 Christopher Batten, ECE Course Staff</p>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js"></script>
+        <script src="../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
