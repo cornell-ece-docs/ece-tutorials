@@ -46,12 +46,12 @@ Let's start by compiling the single-file program that to test our ubiquitous `av
 function:
 
 ```bash
-$ gcc -Wall -g -o avg-main src/avg-main.c
-$ ./avg-test
+$ gcc -Wall -g -O0 -o avg-main src/avg-main.c
+$ ./avg-main
 ```
 
-Notice how we include the `-g` option to turn on support for debugging.
-This code has a bug and should fail the test. Let's start by using printf
+Notice how we include the `-g -O0` options for debugging.
+This code has a bug and should give the wrong output. Let's start by using printf
 debugging. Add some extra printfs to observe the state of the program as
 it executes.
 
@@ -75,7 +75,7 @@ remove the extra printfs, undo your bug fix, and then recompile. Then you
 can start GDB like this
 
 ```bash
-$ gdb -tui avg-test
+$ gdb -tui avg-main
 ```
 
 GDB will drop you into a GDB "prompt" which you can use to interactively
@@ -177,7 +177,7 @@ $ clang-format -i src/avg-main.c
 
 `clang-format` will output the autoformatted source code. To really see
 this in action though we need to write some poorly formatted code! Modify
-the `avg` function in `avg-test.c` to look like this:
+the `avg` function in `avg-main.c` to look like this:
 
 ```c
     int avg( int x, int y) {
@@ -189,7 +189,7 @@ The space before/after parenthesis is not consistent, and the curly braces are
 on the wrong lines. Run `clang-format` again like this:
 
 ```bash
-$ clang-format -i src/avg-main.c
+$ clang-format src/avg-main.c
 ```
 
 Verify that the code is beautiful again. Note that we are not actually
@@ -243,13 +243,13 @@ reminder these are the appropriate git commands:
 
 ```bash
 $ git add -u
-$ git commit -a -m "working on sec04"
+$ git commit -m "working on sec04"
 $ git push
 ```
 
 Revisit the GitHub Actions page for this repository.
 
- - `https://github.com/your-github/ece2400-sec04/actions`
+ - `https://github.com/your-github/ece2400-sec02-2025/actions`
 
 Click on the current commit "working on sec04", and then
 watch as GitHub Actions brings up a virtual machine and runs all the
