@@ -20,11 +20,8 @@ Now clone the GitHub repo we will be using in this section using the
 following commands:
 
 ```bash
-$ source setup-ece2400.sh
-$ mkdir -p ${HOME}/ece2400
-$ cd ${HOME}/ece2400
-$ git clone git@github.com:cornell-ece2400/ece2400-sec07 sec07
-$ cd sec07
+$ git clone https://github.com/cornell-ece2400/ece2400-sec07-2025.git ece2400-sec07
+$ cd ece2400-sec07
 $ tree
 ```
 
@@ -41,12 +38,15 @@ The repository includes the following files:
  - `eval/sort.dat` : Input dataset for evaluation
  - `eval/selection-sort-int-eval.c` : Evaluation program for selection sort
  - `scripts/selection-sort-int-eval.py` : Python script for plotting
+ - `scripts/build.sh` : Script to build entire project
+ - `scripts/eval.sh` : Run evaluation program
+ - `scripts/test.sh` : Run all unit tests
 
 ## 2. Implementing Find Minimum Helper Function
 
 Take a look at the `src/selection-sort-int.c` source file to find the
 `find_minimum` function is a helper function. It takes as input an array
-and a range to work on [`begin`,`end`). Note that the range is inclusive
+and a range to work on `[begin, end)`. Note that the range is inclusive
 of begin and exclusive of end. So if we have an array of eight elements
 and we want to find the minimum of the entire array we would set begin to
 0 and end to 8. The function should return the index of where the minimum
