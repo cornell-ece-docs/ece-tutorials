@@ -30,3 +30,4 @@ nav:
     - 'sec1-gcc.md'
     - 'sec2-cmake.md'
     - 'sec3-debug.md'
+    - 'sec7-sort.md'
