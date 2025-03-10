@@ -170,11 +170,8 @@ the last section):</p>
 </ul>
 <p>Now clone the GitHub repo we will be using in this section using the
 following commands:</p>
-<pre><code class="language-bash">$ source setup-ece2400.sh
-$ mkdir -p ${HOME}/ece2400
-$ cd ${HOME}/ece2400
-$ git clone git@github.com:cornell-ece2400/ece2400-sec07 sec07
-$ cd sec07
+<pre><code class="language-bash">$ git clone https://github.com/cornell-ece2400/ece2400-sec07-2025.git ece2400-sec07
+$ cd ece2400-sec07
 $ tree
 </code></pre>
 <p>The repository includes the following files:</p>
@@ -190,11 +187,14 @@ $ tree
 <li><code>eval/sort.dat</code> : Input dataset for evaluation</li>
 <li><code>eval/selection-sort-int-eval.c</code> : Evaluation program for selection sort</li>
 <li><code>scripts/selection-sort-int-eval.py</code> : Python script for plotting</li>
+<li><code>scripts/build.sh</code> : Script to build entire project</li>
+<li><code>scripts/eval.sh</code> : Run evaluation program</li>
+<li><code>scripts/test.sh</code> : Run all unit tests</li>
 </ul>
 <h2 id="2-implementing-find-minimum-helper-function">2. Implementing Find Minimum Helper Function</h2>
 <p>Take a look at the <code>src/selection-sort-int.c</code> source file to find the
 <code>find_minimum</code> function is a helper function. It takes as input an array
-and a range to work on [<code>begin</code>,<code>end</code>). Note that the range is inclusive
+and a range to work on <code>[begin, end)</code>. Note that the range is inclusive
 of begin and exclusive of end. So if we have an array of eight elements
 and we want to find the minimum of the entire array we would set begin to
 0 and end to 8. The function should return the index of where the minimum
@@ -253,24 +253,23 @@ the input array, and the second is the size of the input array. Let's do
 an experiment to see how the execution time of your selection sort
 implementation grows as a function of the input array size for an input
 array with uniform random input values.</p>
-<pre><code class="language-bash">$ ./build/eval/selection-sort-int-eval urandom 10000
+<pre><code class="language-bash">$ ./scripts/eval.sh urandom 10000
 </code></pre>
 <p>You can use a Bash for loop to run a command multiple times with
 different parameters in a single step like this:</p>
-<pre><code class="language-bash">$ cd build/eval
-$ for i in {1000,2000,4000,6000,8000,10000,12000}; do \
-    ./selection-sort-int-eval urandom $i; \
+<pre><code class="language-bash">$ for i in {1000,2000,4000,6000,8000,10000,12000}; do \
+    ./scripts/eval.sh urandom $i; \
   done
 </code></pre>
 <p>Or even better, you can save the output from each run to a text file like
 this:</p>
 <pre><code class="language-bash">$ rm -f results.txt
 $ for i in {1000,2000,4000,6000,8000,10000,12000}; do \
-    ./selection-sort-int-eval urandom $i | tee -a results.txt; \
+    ./scripts/eval.sh urandom $i; \
   done
 </code></pre>
-<p>The <code>tee -a</code> command will display the results but also append the results
-to the given file. Now you can use the standard <code>grep</code> and <code>cut</code> command
+<p>Each time <code>eval.sh</code> was ran, it appended new data to the bottom of <code>results.txt</code>.
+Now you can use the standard <code>grep</code> and <code>cut</code> command
 line tools to extract the average execution time for each experiment:</p>
 <pre><code class="language-bash">$ grep &quot;Average: &quot; results.txt | cut -d' ' -f5
 </code></pre>
