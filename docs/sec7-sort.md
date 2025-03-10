@@ -130,16 +130,15 @@ implementation grows as a function of the input array size for an input
 array with uniform random input values.
 
 ```bash
-$ ./build/eval/selection-sort-int-eval urandom 10000
+$ ./scripts/eval.sh urandom 10000
 ```
 
 You can use a Bash for loop to run a command multiple times with
 different parameters in a single step like this:
 
 ```bash
-$ cd build/eval
 $ for i in {1000,2000,4000,6000,8000,10000,12000}; do \
-    ./selection-sort-int-eval urandom $i; \
+    ./scripts/eval.sh urandom $i; \
   done
 ```
 
@@ -149,12 +148,12 @@ this:
 ```bash
 $ rm -f results.txt
 $ for i in {1000,2000,4000,6000,8000,10000,12000}; do \
-    ./selection-sort-int-eval urandom $i | tee -a results.txt; \
+    ./scripts/eval.sh urandom $i; \
   done
 ``` 
 
-The `tee -a` command will display the results but also append the results
-to the given file. Now you can use the standard `grep` and `cut` command
+Each time `eval.sh` was ran, it appended new data to the bottom of `results.txt`.
+Now you can use the standard `grep` and `cut` command
 line tools to extract the average execution time for each experiment:
 
 ```bash
