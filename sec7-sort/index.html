@@ -285,7 +285,10 @@ t = [     0,     0,     0,     0,     0,     0,     0 ]
 <p>Replace the zero values in the <code>t</code> array with the measured execution time
 for each corresponding input array size. Now you can easily plot this
 data long with a 0th, 1st, and 2nd order polynomial fit using the script:</p>
-<pre><code class="language-bash">$ python ../scripts/selection-sort-int-plot.py
+<pre><code class="language-bash">$ python3 -m venv env-ece2400
+$ source env-ece2400/bin/activate
+$ pip install matplotlib numpy
+$ python3 ./scripts/selection-sort-int-plot.py
 </code></pre>
 <p>Then you can download the PDF file using VS Code and then open the PDF
 file on your local workstation or laptop. Do these quantitative results
