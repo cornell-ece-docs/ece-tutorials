@@ -177,7 +177,10 @@ for each corresponding input array size. Now you can easily plot this
 data long with a 0th, 1st, and 2nd order polynomial fit using the script:
 
 ```bash
-$ python ../scripts/selection-sort-int-plot.py
+$ python3 -m venv env-ece2400
+$ source env-ece2400/bin/activate
+$ pip install matplotlib numpy
+$ python3 ./scripts/selection-sort-int-plot.py
 ```
 
 Then you can download the PDF file using VS Code and then open the PDF
