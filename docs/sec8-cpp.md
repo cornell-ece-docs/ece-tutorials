@@ -59,7 +59,7 @@ node. When you are finished taking a look use adhoc testing to quickly
 see if your data structure is basically working:
 
 ```bash
-$ g++ -Wall -o slist-int-adhoc src/slist-int-adhoc.cc src/SListInt.cc
+$ g++ -Iinclude -Wall -o slist-int-adhoc src/slist-int-adhoc.cc src/SListInt.cc
 $ ./slist-int-adhoc
 ```
 
