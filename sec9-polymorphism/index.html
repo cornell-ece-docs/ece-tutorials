@@ -8,7 +8,7 @@
         <meta name="author" content="ECE Course Staff">
         
         <link rel="shortcut icon" href="../img/favicon.ico">
-        <title>Section 8: Object-Oriented Programming Lab - ECE Common Course Tutorials</title>
+        <title>Section 9: Dynamic Polymorphism Lab - ECE Common Course Tutorials</title>
         <link href="../css/bootstrap.min.css" rel="stylesheet">
         <link href="../css/fontawesome.min.css" rel="stylesheet">
         <link href="../css/brands.min.css" rel="stylesheet">
@@ -84,11 +84,11 @@
 </li>
                                     
 <li>
-    <a href="./" class="dropdown-item active" aria-current="page">Section 8: Object-Oriented Programming Lab</a>
+    <a href="../sec8-cpp/" class="dropdown-item">Section 8: Object-Oriented Programming Lab</a>
 </li>
                                     
 <li>
-    <a href="../sec9-polymorphism/" class="dropdown-item">Section 9: Dynamic Polymorphism Lab</a>
+    <a href="./" class="dropdown-item active" aria-current="page">Section 9: Dynamic Polymorphism Lab</a>
 </li>
                                 </ul>
                             </li>
@@ -101,12 +101,12 @@
                             </a>
                         </li>
                             <li class="nav-item">
-                                <a rel="prev" href="../sec7-sort/" class="nav-link">
+                                <a rel="prev" href="../sec8-cpp/" class="nav-link">
                                     <i class="fa fa-arrow-left"></i> Previous
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a rel="next" href="../sec9-polymorphism/" class="nav-link">
+                                <a rel="next" class="nav-link disabled">
                                     Next <i class="fa fa-arrow-right"></i>
                                 </a>
                             </li>
@@ -128,37 +128,41 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-bs-level="1"><a href="#section-8-object-oriented-programming-lab" class="nav-link">Section 8: Object-Oriented Programming Lab</a>
+            <li class="nav-item" data-bs-level="1"><a href="#section-9-dynamic-polymorphism-lab" class="nav-link">Section 9: Dynamic Polymorphism Lab</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="2"><a href="#1-getting-the-code" class="nav-link">1. Getting the Code</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#2-implementing-the-constructor-destructor-push-front" class="nav-link">2. Implementing the Constructor, Destructor, Push Front</a>
+            <li class="nav-item" data-bs-level="2"><a href="#1-logging-into-ecelinux-with-vs-code" class="nav-link">1. Logging Into ecelinux with VS Code</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#3-implementing-size-and-at" class="nav-link">3. Implementing Size and At</a>
+            <li class="nav-item" data-bs-level="2"><a href="#2-implementing-the-clone-virtual-member-function" class="nav-link">2. Implementing the Clone Virtual Member Function</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#6-implementing-the-copy-constructor-swap-and-assignment-operator" class="nav-link">6. Implementing the Copy Constructor, Swap, and Assignment Operator</a>
+            <li class="nav-item" data-bs-level="2"><a href="#3-implementing-the-constructor-destructor-push-front" class="nav-link">3. Implementing the Constructor, Destructor, Push Front</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#5-implementing-reverse-v1" class="nav-link">5. Implementing Reverse v1</a>
+            <li class="nav-item" data-bs-level="2"><a href="#4-implementing-size-and-at" class="nav-link">4. Implementing Size and At</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#6-evaluating-reverse-v1" class="nav-link">6. Evaluating Reverse v1</a>
+            <li class="nav-item" data-bs-level="2"><a href="#5-implementing-the-copy-constructor-swap-and-assignment-operator" class="nav-link">5. Implementing the Copy Constructor, Swap, and Assignment Operator</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#7-implementing-reverse-v2" class="nav-link">7. Implementing Reverse v2</a>
+            <li class="nav-item" data-bs-level="2"><a href="#6-implementing-reverse-v1" class="nav-link">6. Implementing Reverse v1</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#8-evaluating-reverse-v2" class="nav-link">8. Evaluating Reverse v2</a>
+            <li class="nav-item" data-bs-level="2"><a href="#7-evaluating-reverse-v1" class="nav-link">7. Evaluating Reverse v1</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#8-implementing-reverse-v2" class="nav-link">8. Implementing Reverse v2</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#9-evaluating-reverse-v2" class="nav-link">9. Evaluating Reverse v2</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -173,13 +177,26 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h1 id="section-8-object-oriented-programming-lab">Section 8: Object-Oriented Programming Lab</h1>
+<h1 id="section-9-dynamic-polymorphism-lab">Section 9: Dynamic Polymorphism Lab</h1>
 <p>In this discussion, we will implement, test, and evaluate an
-object-oriented list data structure using C++.</p>
-<h2 id="1-getting-the-code">1. Getting the Code</h2>
-<p>As usual, log into <code>ecelinux</code> with VS Code. You can clone the starter code from our GitHub:</p>
-<pre><code class="language-bash">$ git clone git@github.com:cornell-ece2400/ece2400-sec08-2025.git ece2400-sec08
-$ cd ece2400-sec08
+object-oriented list data structure that uses dynamic polymorphism and
+then compare it to an object-oriented list that is monomorphic.</p>
+<h2 id="1-logging-into-ecelinux-with-vs-code">1. Logging Into <code>ecelinux</code> with VS Code</h2>
+<p>Follow the same process as in the last section. Find a free workstation
+and log into the workstation using your NetID and standard NetID
+password. Then complete the following steps (described in more detail in
+the last section):</p>
+<ul>
+<li>Start VS Code</li>
+<li>Use <em>View &gt; Command Palette</em> to execute <em>Remote-SSH: Connect Current Window to Host...</em></li>
+<li>Enter <code>netid@ecelinux.ece.cornell.edu</code></li>
+<li>Use <em>View &gt; Explorer</em> to open folder on <code>ecelinux</code></li>
+<li>Use <em>View &gt; Terminal</em> to open terminal on <code>ecelinux</code></li>
+</ul>
+<p>Now clone the GitHub repo we will be using in this section using the
+following commands:</p>
+<pre><code class="language-bash">$ git clone git@github.com:cornell-ece2400/ece2400-sec09-2025 ece2400-sec09
+$ cd ece2400-sec09
 $ tree
 </code></pre>
 <p>The repository includes the following files:</p>
@@ -187,81 +204,98 @@ $ tree
 <li><code>CMakeLists.txt</code> : CMake configuration script to generate Makefile</li>
 <li><code>include/ece2400-stdlib.h</code> : Header file for course standard library</li>
 <li><code>src/ece2400-stdlib.cc</code> : Source code for course standard library</li>
-<li><code>include/SListInt.h</code> : Header file for list</li>
-<li><code>src/SListInt.cc</code> : Source code for list</li>
-<li><code>src/slist-int-adhoc.cc</code> : Ad-hoc test program for list</li>
-<li><code>test/slist-int-directed-test.cc</code> : Directed test cases for list</li>
+<li><code>include/types-dpoly.h</code> : Header file <code>IObject</code> types</li>
+<li><code>src/types-dpoly.cc</code> : Source code for <code>IObject</code> types</li>
+<li><code>include/SListInt.h</code> : Header file for monomorphic list</li>
+<li><code>src/SListInt.cc</code> : Source code for monomorphic list</li>
+<li><code>include/SListIObj.h</code> : Header file for dynamic polymorphic list</li>
+<li><code>src/SListIObj.cc</code> : Source code for dynamic polymorphic list</li>
+<li><code>src/slist-int-adhoc.cc</code> : Ad-hoc test program for monorphic list</li>
+<li><code>src/slist-dpoly-adhoc.cc</code> : Ad-hoc test program for dynamic polymorphic list</li>
+<li><code>test/types-dpoly-directed.cc</code> : Directed test cases for <code>IObject</code> types</li>
+<li><code>test/slist-int-directed-test.cc</code> : Directed test cases for monomorphic list</li>
+<li><code>test/slist-dpoly-directed-test.cc</code> : Directed test cases for dynamic polymorphic list</li>
 <li><code>eval/slist-int-eval.cc</code> : Evaluation program for list</li>
-<li><code>scripts/*-eval.sh</code> : Bash shell scripts for running evaluation</li>
-<li><code>scripts/*-plot.py</code> : Python scripts for plotting</li>
-<li><code>scripts/build.sh</code> : Builds the project</li>
-<li><code>scripts/test.sh</code> : Builds and tests the project</li>
+<li><code>eval/slist-dpoly-eval.cc</code> : Evaluation program for list</li>
+<li><code>scripts/slist-*.sh</code> : Bash shell scripts for running evaluation</li>
+<li><code>scripts/slist-*.py</code> : Python scripts for plotting</li>
+<li><code>scripts/build.sh</code> : Bash script for initial building of project</li>
 </ul>
-<p>Take a look at the <code>SListInt.h</code> header file to understand all of the
+<p>Take a look at the <code>SListIObj.h</code> header file to understand all of the
 public member functions we will be implementing in this lab.</p>
 <ul>
-<li><code>SListInt()</code>: default constructor</li>
-<li><code>~SListInt()</code>: destructor</li>
-<li><code>SListInt(const SListInt&amp; lst)</code>: copy constructor</li>
-<li><code>void swap(SListInt&amp; lst)</code>: swap this list with given list</li>
-<li><code>SListInt&amp; operator=(const SListInt&amp; lst)</code>: assignment operator</li>
-<li><code>void push_front(int v)</code>: push item on front of list</li>
+<li><code>SListIObj()</code>: default constructor</li>
+<li><code>~SListIObj()</code>: destructor</li>
+<li><code>SListIObj( const SListIObj&amp; lst )</code>: copy constructor</li>
+<li><code>void swap( SListIObj&amp; lst )</code>: swap this list with given list</li>
+<li><code>SListIObj&amp; operator=( const SListIObj&amp; lst )</code>: assignment operator</li>
+<li><code>void push_front( const IObject&amp; v )</code>: push item on front of list</li>
 <li><code>int size() cont</code>: return number of items in the list</li>
-<li><code>int at(int idx) const</code>: return copy of item at given index (for reading)</li>
-<li><code>int&amp; at(int idx)</code>: return reference to item at given index (for writing)</li>
+<li><code>IObject* at( int idx ) const</code>: return copy of pointer to item at given index (for reading)</li>
+<li><code>IObject*&amp; at( int idx )</code>: return reference to pointer to item at given index (for writing)</li>
 <li><code>void reverse_v1()</code>: reverse all items in list using algorithm v1</li>
 <li><code>void reverse_v2()</code>: reverse all items in list using algorithm v2</li>
 <li><code>void print() const</code>: print the list</li>
 </ul>
-<h2 id="2-implementing-the-constructor-destructor-push-front">2. Implementing the Constructor, Destructor, Push Front</h2>
-<p>Let's start by taking a look at these functions:</p>
+<h2 id="2-implementing-the-clone-virtual-member-function">2. Implementing the Clone Virtual Member Function</h2>
+<p>Before starting work on a dynamic polymorphic list, we will finish
+implementing a set of classes that all inherit from the <code>IObject</code> base
+class. Take a look at the <code>Integer</code>, <code>Double</code>, and <code>Complex</code> classes in
+<code>src/types-dpoly.h</code> and <code>src/types-dpoly.cc</code>. Implement the <code>clone</code>
+member function for each of these clases based on the code discussed in
+lecture.</p>
+<p>When you are finished build and run the directed tests like this:</p>
+<pre><code class="language-bash">$ ./scripts/build.sh
+$ ./scripts/test.sh
+</code></pre>
+<h2 id="3-implementing-the-constructor-destructor-push-front">3. Implementing the Constructor, Destructor, Push Front</h2>
+<p>Now let's take a look at these functions in <code>src/SListIObj.cc</code>:</p>
 <ul>
-<li><code>SListInt()</code>: default constructor</li>
-<li><code>~SListInt()</code>: destructor</li>
-<li><code>void push_front(int v)</code>: push item on front of list</li>
+<li><code>SListIObj()</code>: default constructor</li>
+<li><code>~SListIObj()</code>: destructor</li>
+<li><code>void push_front( const IObject&amp; v )</code>: push item on front of list</li>
 </ul>
 <p>We have implemented the default constructor for you. Implement
-<code>push_front</code> based on the code discussed in lecture. We have started the
+<code>push_front</code> based on the code discussed in lecture. Think critically
+about how to create a copy of the given <code>IObject</code>. We have started the
 implementation of the destructor for you. Add the code to delete the
-node. When you are finished taking a look use adhoc testing to quickly
-see if your data structure is basically working:</p>
-<pre><code class="language-bash">$ g++ -Iinclude -Wall -o slist-int-adhoc src/slist-int-adhoc.cc src/SListInt.cc
-$ ./slist-int-adhoc
+node. Do we need to do anything special about the <code>IObject</code>? You can also
+look at the implementation for a monomorphic list from the previous
+discussion section in <code>src/SListInt.cc</code>. When you are finished taking a
+look use adhoc testing to quickly see if your data structure is basically
+working:</p>
+<pre><code class="language-bash">$ ./scripts/test.sh
+$ ./build/src/slist-dpoly-adhoc
 </code></pre>
-<p>From here on out, you should really just use the build script:</p>
-<pre><code class="language-bash">$ ./scripts/build.sh
-$ ./build/src/slist-int-adhoc
-</code></pre>
-<p>Until you implement all the functions, you will see errors like this:</p>
-<pre><code>slist-int-adhoc: src/SListInt.cc:89: void SListInt::push_front(int): 
-  Assertion `false &amp;&amp; &quot;Replace this with your push_front code&quot;' failed.
-</code></pre>
-<h2 id="3-implementing-size-and-at">3. Implementing Size and At</h2>
+<h2 id="4-implementing-size-and-at">4. Implementing Size and At</h2>
 <p>Obviously, we want to do more than just ad-hoc testing, but we need some
 way to check what is in the slist before we can write real directed test
-cases. Let's next implement these functions:</p>
+cases. Let's take a look at these functions:</p>
 <ul>
 <li><code>int size() cont</code>: return number of items in the list</li>
-<li><code>int at(int idx) const</code>: return copy of item at given index (for reading)</li>
-<li><code>int&amp; at(int idx)</code>: return reference to item at given index (for writing)</li>
+<li><code>IObject* at(int idx) const</code>: return copy of pointer to item at given index (for reading)</li>
+<li><code>IObject*&amp; at(int idx)</code>: return reference to pointer to item at given index (for writing)</li>
 </ul>
-<p>We have already implemented the <code>size</code> member functions for you. Notice
-how we have two versions of <code>at</code>: the <code>const</code> version is automatically
-used by the compiler when reading an item and the non-<code>const</code> version is
-automatically used by the compiler when writing an item. The non-<code>const</code>
-version returns a <em>reference</em> which enables one to directly modify an
-item that is stored in the list.</p>
+<p>We have already implemented these member functions for you, but you
+should still take a close look. Notice how we have two versions of <code>at</code>:
+the <code>const</code> version is automatically used by the compiler when reading an
+item and the non-<code>const</code> version is automatically used by the compiler
+when writing an item. Keep in mind that <code>at</code> returns an <code>IObject</code>
+pointer. You cannot copy an <code>IObject</code> since it is an abstract base class;
+you can only work with pointers and references to an <code>IObject</code>. You can
+also look at the implementation of <code>at</code> for a monomorphic list from the
+previous discussion section in <code>src/SListInt.cc</code>.</p>
 <p>When you are finished, take a look at the first two directed test cases
-in <code>slist-int-directed-test.cc</code>. Build and run the test cases like this:</p>
+in <code>slist-dpoly-directed-test.cc</code>. Build and run the test cases like this:</p>
 <pre><code class="language-bash">$ ./scripts/build.sh
-$ ./build/test/slist-int-directed-test 1
-$ ./build/test/slist-int-directed-test 2
+$ ./build/test/slist-dpoly-directed-test 1
+$ ./build/test/slist-dpoly-directed-test 2
 </code></pre>
-<h2 id="6-implementing-the-copy-constructor-swap-and-assignment-operator">6. Implementing the Copy Constructor, Swap, and Assignment Operator</h2>
+<h2 id="5-implementing-the-copy-constructor-swap-and-assignment-operator">5. Implementing the Copy Constructor, Swap, and Assignment Operator</h2>
 <p>Because we need to implement a destructor, the rule of three tells us we
 also need to implement a copy constructor and assignment operator. We
 have implemented the copy constructor for you, but spend some time
-reviewing it. We will be using a copy-and-swap pattern to implement the
+reviewing it. We will be using a "copy-and-swap" pattern to implement the
 assignment operator, so we need to start by implementing the <code>swap</code>
 member function. This member functions swaps the internal state between
 this list and the given list.</p>
@@ -269,10 +303,10 @@ this list and the given list.</p>
 pattern which reuses the functionality already implemented in the copy
 constructor and destructor to implement the overloaded assignment
 operator:</p>
-<pre><code class="language-cpp">SListInt &amp;SListInt::operator=(const SListInt &amp;lst) {
-  SListInt tmp(lst); // create temporary copy of given list
-  swap(tmp);         // swap this list with temporary list
-  return *this;      // destructor called for temporary list
+<pre><code class="language-cpp">SListIObj &amp;SListIObj::operator=(const SListIObj &amp;lst) {
+  SListIObj tmp(lst); // create temporary copy of given list
+  swap(tmp);          // swap this list with temporary list
+  return *this;       // destructor called for temporary list
 }
 </code></pre>
 <p>We first use the copy constructor to make a temporary copy of the given
@@ -287,73 +321,65 @@ article that discusses this pattern:</p>
 </ul>
 <p>When you are finished use the corresponding directed test cases to verify
 your implementation is working:</p>
-<pre><code class="language-bash">$ ./scripts/build.sh
-$ ./build/test/slist-int-directed-test 3
-$ ./build/test/slist-int-directed-test 4
-$ ./build/test/slist-int-directed-test 5
-$ ./build/test/slist-int-directed-test 6
+<pre><code class="language-bash">    % ./scripts/build.sh
+    % ./build/test/slist-dpoly-directed-test 3
+    % ./build/test/slist-dpoly-directed-test 4
+    % ./build/test/slist-dpoly-directed-test 5
+    % ./build/test/slist-dpoly-directed-test 6
 </code></pre>
-<h2 id="5-implementing-reverse-v1">5. Implementing Reverse v1</h2>
-<p>Take a look at the <code>SListInt.cc</code> source file to find the <code>reverse_v1</code>
+<h2 id="6-implementing-reverse-v1">6. Implementing Reverse v1</h2>
+<p>Take a look at the <code>SListIObj.cc</code> source file to find the <code>reverse_v1</code>
 member function. This function should reverse all of the items in the
 list. Let's use a simple algorithm inspired by the following pseudocode
 used for reversing an array:</p>
-<pre><code class="language-python">def reverse( x, n ):
-  for i in 0 to n/2:
-    lo = i
-    hi = (n-1) - i
-    swap( x[lo], x[hi] )
+<pre><code class="language-python">def reverse(x, n):
+    for i in 0 to n/2:
+        lo = i
+        hi = (n - 1) - i
+    swap(x[lo], x[hi])
 </code></pre>
 <p>You can use the <code>size</code> member function to get the number of items in the
 list and you can use the <code>at</code> member function to read and write items in
-the list by index. When you are finished use the corresponding directed
-test cases to verify your implementation is working:</p>
+the list by index. Think critcally about how to compare and swap
+<code>IObjects</code>. Can we just swap the pointers? You can also look at the
+implementation of <code>reverse_v1</code> for a monomorphic list from the previous
+discussion section in <code>src/SListInt.cc</code>. When you are finished use the
+corresponding directed test cases to verify your implementation is
+working:</p>
 <pre><code class="language-bash">$ ./scripts/build.sh
-$ ./build/test/slist-int-directed-test 7
-$ ./build/test/slist-int-directed-test 8
-$ ./build/test/slist-int-directed-test 9
+$ ./build/test/slist-dpoly-directed-test 7
+$ ./build/test/slist-dpoly-directed-test 8
+$ ./build/test/slist-dpoly-directed-test 9
 </code></pre>
-<h2 id="6-evaluating-reverse-v1">6. Evaluating Reverse v1</h2>
+<h2 id="7-evaluating-reverse-v1">7. Evaluating Reverse v1</h2>
 <p>We have provided you an evaluation program to quantitatively evaluate the
 execution time of the linked list data structure and reverse v1
 algorithm. Take a look at this evaluation program in
-<code>slist-int-reverse-v1-eval.c</code>. You can build and run this evaluation
-program like this:</p>
+<code>slist-dpoly-reverse-v1-eval.c</code>. You can build this evaluation program
+along with the evaluation program from last week like this:</p>
 <pre><code class="language-bash">$ ./scripts/eval.sh
 </code></pre>
-<p>You will see that the evaluation program takes one command line argument
-specifying the size of the input array. Let's do an experiment to see how
-the execution time of the reverse v1 algorithm grows as a function of the
-input array size.</p>
-<pre><code class="language-bash">$ ./scripts/eval.sh 200
+<p>As discussed in the previuod discussion section, you can easily run an
+evaluation program using a bash script like this:</p>
+<pre><code class="language-bash">$ source ./scripts/slist-int-reverse-v1-eval.sh
+$ source ./scripts/slist-dpoly-reverse-v1-eval.sh
 </code></pre>
-<p>While we could run each experiment individually, let's automate this by
-using a Bash for loop to run a command multiple times with different
-parameters in a single step. We could enter the Bash for loop on the
-command line, but let's put it in a Bash script instead so we can easily
-run it. A Bash script is just a file that contains a sequence of Linux
-commands that you can run together. We have provided you a Bash script
-that runs several experiments and saves all of the results in a file
-named <code>slist-int-reverse-v1-eval.txt</code>. You can look at the Bash script in
-<code>scripts/slist-int-reverse-v1-eval.sh</code>. You can run the commands in the
-Bash script by using the <code>source</code> command:</p>
-<pre><code class="language-bash">$ ./scripts/slist-int-reverse-v1-eval.sh
-</code></pre>
-<p>Instead of using the standard <code>grep</code> and <code>cut</code> command line tools to
-extract the average execution time for each experiment, we can just
-incorporate reading the results into the beginning of a Python plotting
-script. Take a look at an example Python script in
-<code>scripts/slist-int-reverse-v1-eval-plot.py</code>. You can easily plot the
-result data with a 0th, 1st, and 2nd order polynomial fit using the
-script. Before you run the Python script, activate your Python environment from last section, so that you have an install of <code>matplotlib</code>:</p>
-<pre><code class="language-bash">$ source env-ece2400/bin/activate
-$ python3 ./scripts/slist-int-reverse-v1-plot.py
+<p>We now have a single Python plotting script that can easily plot the
+result data from any evaluation run with a 0th, 1st, and 2nd order
+polynomial fit. We also have a single Python plotting script that can
+plot all of the data on a single plot.</p>
+<pre><code class="language-bash">$ python ./scripts/slist-plot.py ./slist-int-reverse-v1-eval.txt
+$ python ./scripts/slist-plot.py ./slist-dpoly-reverse-v1-eval.txt
+$ python ./scripts/slist-plot-all.py
 </code></pre>
 <p>Then you can download the PDF file using VS Code and then open the PDF
-file on your local workstation or laptop. Do these quantitative results
+files on your local workstation or laptop. Do these quantitative results
 match your qualitative expectations given what you know about the
-asymptotic time complexity of the reverse v1 algorithm?</p>
-<h2 id="7-implementing-reverse-v2">7. Implementing Reverse v2</h2>
+asymptotic time complexity of the reverse v1 algorithm? Do these
+quantitative results match your qualitative expectations given what you
+know about the performance of monomorphic vs dynamic polymorphic data
+structures?</p>
+<h2 id="8-implementing-reverse-v2">8. Implementing Reverse v2</h2>
 <p>Let's experiment with an alternative reverse algorithm. This reverse v2
 algorithm should use the following steps:</p>
 <ol>
@@ -361,19 +387,33 @@ algorithm should use the following steps:</p>
 <li>Push front all values from this list onto temporary list</li>
 <li>Swap this list with the temporary list</li>
 </ol>
-<p>We already implemented this function for you, so it should pass all the tests.</p>
-<h2 id="8-evaluating-reverse-v2">8. Evaluating Reverse v2</h2>
+<p>You can also look at the implementation of <code>reverse_v2</code> for a monomorphic
+list from the previous discussion section in <code>src/SListInt.cc</code>. When you
+are finished use the corresponding directed test cases to verify your
+implementation is working:</p>
+<pre><code class="language-bash">$ ./scripts/build.sh
+$ ./build/test/slist-spoly-directed-test 10
+$ ./build/test/slist-spoly-directed-test 11
+$ ./build/test/slist-spoly-directed-test 12
+</code></pre>
+<p>Your implementation should now pass all tests:</p>
+<pre><code class="language-bash">$ ./scripts/test.sh
+</code></pre>
+<h2 id="9-evaluating-reverse-v2">9. Evaluating Reverse v2</h2>
 <p>We have provided you an evaluation program to quantitatively evaluate the
 execution time of the linked list data structure and reverse v2
-algorithm. You can build and run this evaluation program like this:</p>
-<pre><code class="language-bash">$ ./scripts/eval.sh 2000
+algorithm. You can build the evaluation programs for the reverse v2
+algorithm on both a monomorphic and dynamic polymorphic list like this:</p>
+<pre><code class="language-bash">$ ./scripts/eval.sh
 </code></pre>
 <p>We have provided you a Bash script and two Python plotting scripts
 similar in spirit to what we worked with in a previous section. Let's run
 the bash script and create the plots.</p>
-<pre><code class="language-bash">$ ./scripts/slist-int-reverse-v2-eval.sh
-$ python3 ./scripts/slist-int-reverse-v2-plot.py
-$ python3 ./scripts/slist-plot-all.py
+<pre><code class="language-bash">$ source ./scripts/slist-int-reverse-v2-eval.sh
+$ source ./scripts/slist-dpoly-reverse-v2-eval.sh
+$ python ./scripts/slist-plot.py ./slist-int-reverse-v2-eval.txt
+$ python ./scripts/slist-plot.py ./slist-dpoly-reverse-v2-eval.txt
+$ python ./scripts/slist-plot-all.py
 </code></pre>
 <p>Then you can download the PDF files for both plots using VS Code and then
 open the PDF file on your local workstation or laptop. Do these
@@ -381,10 +421,13 @@ quantitative results match your qualitative expectations given what you
 know about the asymptotic time complexity of reverse v1 vs v2 algorithms?</p>
 <h2 id="10-extensions-to-try-on-your-own">10. Extensions to Try On Your Own</h2>
 <p>The code used in this discussion section serves as an excellent framework
-for continuing to explore object-oriented programming on your own.
-Consider copying over the code for a C++ string class presented elsewhere
-in the course so you can implement a list of strings (<code>SListStr</code>) data
-structure.</p></div>
+for continuing to explore object-oriented programming with dynamic
+polymorphism on your own. Consider copying over the code for a C++ string
+class presented elsewhere in the course and making this class inherit
+from <code>IObject</code>. Now you should be able to implement a list of strings
+data structure or a list that stores a heterogeneous mix of integers,
+doubles, complex numbers, <em>and</em> strings! Think critically about how you
+can use dynamic polymorphism to create lists of lists and try it out.</p></div>
             </div>
         </div>
 
