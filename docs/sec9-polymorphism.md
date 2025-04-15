@@ -291,6 +291,8 @@ the bash script and create the plots.
 ```bash
 $ source ./scripts/slist-int-reverse-v2-eval.sh
 $ source ./scripts/slist-dpoly-reverse-v2-eval.sh
+# You should have a python environment created
+$ source env-ece2400/bin/activate
 $ python ./scripts/slist-plot.py ./slist-int-reverse-v2-eval.txt
 $ python ./scripts/slist-plot.py ./slist-dpoly-reverse-v2-eval.txt
 $ python ./scripts/slist-plot-all.py
