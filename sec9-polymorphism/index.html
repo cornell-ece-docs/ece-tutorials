@@ -90,6 +90,10 @@
 <li>
     <a href="./" class="dropdown-item active" aria-current="page">Section 9: Dynamic Polymorphism Lab</a>
 </li>
+                                    
+<li>
+    <a href="../sec10-monomorph/" class="dropdown-item">Section 10: Static Polymorphism Lab</a>
+</li>
                                 </ul>
                             </li>
                         </ul>
@@ -106,7 +110,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a rel="next" class="nav-link disabled">
+                                <a rel="next" href="../sec10-monomorph/" class="nav-link">
                                     Next <i class="fa fa-arrow-right"></i>
                                 </a>
                             </li>
@@ -411,6 +415,8 @@ similar in spirit to what we worked with in a previous section. Let's run
 the bash script and create the plots.</p>
 <pre><code class="language-bash">$ source ./scripts/slist-int-reverse-v2-eval.sh
 $ source ./scripts/slist-dpoly-reverse-v2-eval.sh
+# You should have a python environment created
+$ source env-ece2400/bin/activate
 $ python ./scripts/slist-plot.py ./slist-int-reverse-v2-eval.txt
 $ python ./scripts/slist-plot.py ./slist-dpoly-reverse-v2-eval.txt
 $ python ./scripts/slist-plot-all.py
