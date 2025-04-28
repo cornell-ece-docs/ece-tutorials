@@ -200,23 +200,23 @@ the last section):</p>
 </ul>
 <p>Now clone the GitHub repo we will be using in this section using the
 following commands:</p>
-<pre><code class="language-bash">$ git clone git@github.com:cornell-ece2400/ece2400-sec11 ece2400-sec10
+<pre><code class="language-bash">$ git clone git@github.com:cornell-ece2400/ece2400-sec10
 $ cd ece2400-sec10
 $ tree
 </code></pre>
 <p>The repository includes the following files:</p>
 <ul>
 <li><code>CMakeLists.txt</code> : CMake configuration script to generate Makefile</li>
-<li><code>src/ece2400-stdlib.h</code> : Header file for course standard library</li>
+<li><code>include/ece2400-stdlib.h</code> : Header file for course standard library</li>
 <li><code>src/ece2400-stdlib.cc</code> : Source code for course standard library</li>
-<li><code>src/types-dpoly.h</code> : Header file <code>IObject</code> types</li>
+<li><code>include/types-dpoly.h</code> : Header file <code>IObject</code> types</li>
 <li><code>src/types-spoly.cc</code> : Source code for <code>IObject</code> types</li>
-<li><code>src/SListInt.h</code> : Header file for monomorphic list</li>
+<li><code>include/SListInt.h</code> : Header file for monomorphic list</li>
 <li><code>src/SListInt.cc</code> : Source code for monomorphic list</li>
-<li><code>src/SListIObj.h</code> : Header file for dynamic polymorphic list</li>
+<li><code>include/SListIObj.h</code> : Header file for dynamic polymorphic list</li>
 <li><code>src/SListIObj.cc</code> : Source code for dynamic polymorphic list</li>
-<li><code>src/SList.h</code> : Header file for static polymorphic list</li>
-<li><code>src/SList.inl</code> : Inline source code for static polymorphic list</li>
+<li><code>include/SList.h</code> : Header file for static polymorphic list</li>
+<li><code>include/SList.inl</code> : Inline source code for static polymorphic list</li>
 <li><code>src/slist-int-adhoc.cc</code> : Ad-hoc test program for monorphic list</li>
 <li><code>src/slist-dpoly-adhoc.cc</code> : Ad-hoc test program for dynamic polymorphic list</li>
 <li><code>src/slist-spoly-adhoc.cc</code> : Ad-hoc test program for static polymorphic list</li>
@@ -372,21 +372,18 @@ algorithm. Take a look at this evaluation program in
 programs along with the evaluation programs from the previous discussion
 section using the provided bash script.</p>
 <pre><code class="language-bash">$ ./scripts/eval.sh
-$ source ../scripts/slist-int-reverse-v1-eval.sh
-$ source ../scripts/slist-dpoly-reverse-v1-eval.sh
-$ source ../scripts/slist-spoly-reverse-v1-eval.sh
-$ source ../scripts/slist-int-reverse-v1-eval.sh
-$ source ../scripts/slist-dpoly-reverse-v1-eval.sh
-$ source ../scripts/slist-spoly-reverse-v1-eval.sh
+$ source ./scripts/slist-int-reverse-v1-eval.sh
+$ source ./scripts/slist-dpoly-reverse-v1-eval.sh
+$ source ./scripts/slist-spoly-reverse-v1-eval.sh
 </code></pre>
 <p>As in the previous discussion section, you can easily plot the result
 data with a 0th, 1st, and 2nd order polynomial fit using the script:</p>
 <pre><code class="language-bash"># You should have a python environment created
 $ source env-ece2400/bin/activate
-$ python3 ../scripts/slist-plot.py ./slist-int-reverse-v1-eval.txt
-$ python3 ../scripts/slist-plot.py ./slist-dpoly-reverse-v1-eval.txt
-$ python3 ../scripts/slist-plot.py ./slist-spoly-reverse-v1-eval.txt
-$ python3 ../scripts/slist-plot-all.py
+$ python3 ./scripts/slist-plot.py ./slist-int-reverse-v1-eval.txt
+$ python3 ./scripts/slist-plot.py ./slist-dpoly-reverse-v1-eval.txt
+$ python3 ./scripts/slist-plot.py ./slist-spoly-reverse-v1-eval.txt
+$ python3 ./scripts/slist-plot-all.py
 </code></pre>
 <p>Then you can download the PDF file using VS Code and then open the PDF
 files on your local workstation or laptop. Do these quantitative results
@@ -416,14 +413,14 @@ $ ./build/test/slist-spoly-directed-test 12
 <pre><code class="language-bash">$ ./scripts/test.sh
 </code></pre>
 <h2 id="9-evaluating-reverse-v2">9. Evaluating Reverse v2</h2>
-<p>We have provided you an evaluation program to quantitatively evaluate the
-execution time of the linked list data structure and reverse v2
-algorithm. We also modified the <code>CMakeLists.txt</code> file to provide a new
-target that will: (1) build all of the evaluation programs; (2) run all
-of the experiments; and (3) generate all the plots. This demonstrates the
-power of using automation through Bash scripts, Python scripts, and CMake
-to enable much more productive workflows.</p>
-<pre><code class="language-bash">    % # TODO: command here
+<pre><code class="language-bash">$ ./scripts/eval.sh
+$ source ./scripts/slist-int-reverse-v2-eval.sh
+$ source ./scripts/slist-dpoly-reverse-v2-eval.sh
+$ source ./scripts/slist-spoly-reverse-v2-eval.sh
+$ python3 ./scripts/slist-plot.py ./slist-int-reverse-v2-eval.txt
+$ python3 ./scripts/slist-plot.py ./slist-dpoly-reverse-v2-eval.txt
+$ python3 ./scripts/slist-plot.py ./slist-spoly-reverse-v2-eval.txt
+$ python3 ./scripts/slist-plot-all.py
 </code></pre>
 <p>Then you can download the PDF files for both plots using VS Code and then
 open the PDF file on your local workstation or laptop. Do these
