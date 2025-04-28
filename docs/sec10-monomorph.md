@@ -22,7 +22,7 @@ Now clone the GitHub repo we will be using in this section using the
 following commands:
 
 ```bash
-$ git clone git@github.com:cornell-ece2400/ece2400-sec11 ece2400-sec10
+$ git clone git@github.com:cornell-ece2400/ece2400-sec10
 $ cd ece2400-sec10
 $ tree
 ```
@@ -30,16 +30,16 @@ $ tree
 The repository includes the following files:
 
  - `CMakeLists.txt` : CMake configuration script to generate Makefile
- - `src/ece2400-stdlib.h` : Header file for course standard library
+ - `include/ece2400-stdlib.h` : Header file for course standard library
  - `src/ece2400-stdlib.cc` : Source code for course standard library
- - `src/types-dpoly.h` : Header file `IObject` types
+ - `include/types-dpoly.h` : Header file `IObject` types
  - `src/types-spoly.cc` : Source code for `IObject` types
- - `src/SListInt.h` : Header file for monomorphic list
+ - `include/SListInt.h` : Header file for monomorphic list
  - `src/SListInt.cc` : Source code for monomorphic list
- - `src/SListIObj.h` : Header file for dynamic polymorphic list
+ - `include/SListIObj.h` : Header file for dynamic polymorphic list
  - `src/SListIObj.cc` : Source code for dynamic polymorphic list
- - `src/SList.h` : Header file for static polymorphic list
- - `src/SList.inl` : Inline source code for static polymorphic list
+ - `include/SList.h` : Header file for static polymorphic list
+ - `include/SList.inl` : Inline source code for static polymorphic list
  - `src/slist-int-adhoc.cc` : Ad-hoc test program for monorphic list
  - `src/slist-dpoly-adhoc.cc` : Ad-hoc test program for dynamic polymorphic list
  - `src/slist-spoly-adhoc.cc` : Ad-hoc test program for static polymorphic list
@@ -233,12 +233,9 @@ section using the provided bash script.
 
 ```bash
 $ ./scripts/eval.sh
-$ source ../scripts/slist-int-reverse-v1-eval.sh
-$ source ../scripts/slist-dpoly-reverse-v1-eval.sh
-$ source ../scripts/slist-spoly-reverse-v1-eval.sh
-$ source ../scripts/slist-int-reverse-v1-eval.sh
-$ source ../scripts/slist-dpoly-reverse-v1-eval.sh
-$ source ../scripts/slist-spoly-reverse-v1-eval.sh
+$ source ./scripts/slist-int-reverse-v1-eval.sh
+$ source ./scripts/slist-dpoly-reverse-v1-eval.sh
+$ source ./scripts/slist-spoly-reverse-v1-eval.sh
 ```
 
 As in the previous discussion section, you can easily plot the result
@@ -247,10 +244,10 @@ data with a 0th, 1st, and 2nd order polynomial fit using the script:
 ```bash
 # You should have a python environment created
 $ source env-ece2400/bin/activate
-$ python3 ../scripts/slist-plot.py ./slist-int-reverse-v1-eval.txt
-$ python3 ../scripts/slist-plot.py ./slist-dpoly-reverse-v1-eval.txt
-$ python3 ../scripts/slist-plot.py ./slist-spoly-reverse-v1-eval.txt
-$ python3 ../scripts/slist-plot-all.py
+$ python3 ./scripts/slist-plot.py ./slist-int-reverse-v1-eval.txt
+$ python3 ./scripts/slist-plot.py ./slist-dpoly-reverse-v1-eval.txt
+$ python3 ./scripts/slist-plot.py ./slist-spoly-reverse-v1-eval.txt
+$ python3 ./scripts/slist-plot-all.py
 ```
 
 Then you can download the PDF file using VS Code and then open the PDF
@@ -290,16 +287,15 @@ $ ./scripts/test.sh
 
 ## 9. Evaluating Reverse v2
 
-We have provided you an evaluation program to quantitatively evaluate the
-execution time of the linked list data structure and reverse v2
-algorithm. We also modified the `CMakeLists.txt` file to provide a new
-target that will: (1) build all of the evaluation programs; (2) run all
-of the experiments; and (3) generate all the plots. This demonstrates the
-power of using automation through Bash scripts, Python scripts, and CMake
-to enable much more productive workflows.
-
 ```bash
-    % # TODO: command here
+$ ./scripts/eval.sh
+$ source ./scripts/slist-int-reverse-v2-eval.sh
+$ source ./scripts/slist-dpoly-reverse-v2-eval.sh
+$ source ./scripts/slist-spoly-reverse-v2-eval.sh
+$ python3 ./scripts/slist-plot.py ./slist-int-reverse-v2-eval.txt
+$ python3 ./scripts/slist-plot.py ./slist-dpoly-reverse-v2-eval.txt
+$ python3 ./scripts/slist-plot.py ./slist-spoly-reverse-v2-eval.txt
+$ python3 ./scripts/slist-plot-all.py
 ```
 
 Then you can download the PDF files for both plots using VS Code and then
