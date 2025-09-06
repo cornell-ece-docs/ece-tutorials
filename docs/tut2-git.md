@@ -33,7 +33,7 @@ GitHub. GitHub uses these keys for authentication. GitHub has its own tutorial o
 You can print the public key you've made to the terminal:
 
 ```bash
-$ cat ~/.ssh/id_ed25519
+$ cat ~/.ssh/id_ed25519.pub
 ```
 
 Copy the output and use the following page to add the public key to GitHub:
