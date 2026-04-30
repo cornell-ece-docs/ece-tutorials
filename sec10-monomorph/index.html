@@ -142,7 +142,7 @@
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#3-implementing-the-constructor-destructor-push-front" class="nav-link">3. Implementing the Constructor, Destructor, Push Front</a>
+            <li class="nav-item" data-bs-level="2"><a href="#3-implementing-the-destructor-and-push-front" class="nav-link">3. Implementing the Destructor and Push Front</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -184,8 +184,8 @@
 <h1 id="section-10-static-polymorphism-lab">Section 10: Static Polymorphism Lab</h1>
 <p>In this discussion, we will implement, test, and evaluate a generic list
 data structure that uses static polymorphism and then compare it to an
-object-oriented list that uses dynamic polymorphism and an
-object-oriented list that is monomorphic.</p>
+object-oriented list that uses dynamic polymorphism (<code>SListIObj</code>) and an
+object-oriented list that is monomorphic (<code>SListInt</code>).</p>
 <h2 id="1-logging-into-ecelinux-with-vs-code">1. Logging Into <code>ecelinux</code> with VS Code</h2>
 <p>Follow the same process as in the last section. Find a free workstation
 and log into the workstation using your NetID and standard NetID
@@ -201,7 +201,7 @@ the last section):</p>
 <p>Now clone the GitHub repo we will be using in this section using the
 following commands:</p>
 <pre><code class="language-bash">$ git clone git@github.com:cornell-ece2400/ece2400-sec10-sp26
-$ cd sec10-sp26
+$ cd sec10
 $ tree
 </code></pre>
 <p>The repository includes the following files:</p>
@@ -256,7 +256,7 @@ build and run the directed tests like this:</p>
 <pre><code class="language-bash">$ ./scripts/build.sh
 $ ./build/test/swap-directed-test
 </code></pre>
-<h2 id="3-implementing-the-constructor-destructor-push-front">3. Implementing the Constructor, Destructor, Push Front</h2>
+<h2 id="3-implementing-the-destructor-and-push-front">3. Implementing the Destructor and Push Front</h2>
 <p>Now let's take a look at these functions in <code>src/SList.inl</code>:</p>
 <ul>
 <li><code>SList()</code>: default constructor</li>
@@ -272,6 +272,7 @@ finished use adhoc testing to quickly see if your data structure is
 basically working:</p>
 <pre><code class="language-bash">$ ./build/src/slist-spoly-adhoc
 </code></pre>
+<p>(If your code is working, this test will print "10 11 12" to the screen.)</p>
 <h2 id="4-implementing-size-and-at">4. Implementing Size and At</h2>
 <p>Obviously, we want to do more than just ad-hoc testing, but we need some
 way to check what is in the list before we can write real directed test
