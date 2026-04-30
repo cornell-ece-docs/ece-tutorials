@@ -22,8 +22,8 @@ Now clone the GitHub repo we will be using in this section using the
 following commands:
 
 ```bash
-$ git clone git@github.com:cornell-ece2400/ece2400-sec10
-$ cd ece2400-sec10
+$ git clone git@github.com:cornell-ece2400/ece2400-sec10-sp26
+$ cd sec10-sp26
 $ tree
 ```
 
