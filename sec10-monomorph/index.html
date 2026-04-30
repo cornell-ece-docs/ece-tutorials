@@ -377,6 +377,29 @@ $ source ./scripts/slist-int-reverse-v1-eval.sh
 $ source ./scripts/slist-dpoly-reverse-v1-eval.sh
 $ source ./scripts/slist-spoly-reverse-v1-eval.sh
 </code></pre>
+<p>The scripts we'll use next require python to have matplotlib
+installed.  Unfortunately, python on the ecelinux servers do not have
+this installed and we do not have permission to install it across the
+entire server.  Users can, however, create a local python environment
+in which they can perform the installation just for personal use. To
+do this you type:</p>
+<pre><code class="language-bash"># Create python environment
+$ python3 -m venv env-ece2400
+
+# invoke python environment
+source env-ece2400/bin/activate
+
+# upgrade pip (which installs matplotlib)
+# I actually had to do this twice due to an upgrade still 
+# being available after the first upgrade
+(env-ece2400) $ pip install --upgrade pip
+
+# install matplotlib in your environment
+(env-ece2400) $ pip install matplotlib
+</code></pre>
+<p>You only need to create your <code>env-ece2400</code> environment once. After that,
+you can source it whenver you log onto the ecelinux severs.</p>
+<p>Now, back to our lab activity:</p>
 <p>As in the previous discussion section, you can easily plot the result
 data with a 0th, 1st, and 2nd order polynomial fit using the script:</p>
 <pre><code class="language-bash"># You should have a python environment created
