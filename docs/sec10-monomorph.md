@@ -242,10 +242,10 @@ $ source ./scripts/slist-spoly-reverse-v1-eval.sh
 
 The scripts we'll use next require python to have matplotlib
 installed.  Unfortunately, python on the ecelinux servers do not have
-this installed and we do not have permission to install it across the
-entire server.  Users can, however, create a local python environment
-in which they can perform the installation just for personal use. To
-do this you type:
+this installed and without filing an IT ticket, we do not have
+permission to install it across the entire server.  Users can,
+however, create a local python environment in which they can perform
+the installation just for personal use. To do this you type:
 
 
 ```bash
@@ -253,7 +253,7 @@ do this you type:
 $ python3 -m venv env-ece2400
 
 # invoke python environment
-source env-ece2400/bin/activate
+$ source env-ece2400/bin/activate
 
 # upgrade pip (which installs matplotlib)
 # I actually had to do this twice due to an upgrade still 
@@ -275,10 +275,10 @@ data with a 0th, 1st, and 2nd order polynomial fit using the script:
 ```bash
 # You should have a python environment created
 $ source env-ece2400/bin/activate
-$ python3 ./scripts/slist-plot.py ./slist-int-reverse-v1-eval.txt
-$ python3 ./scripts/slist-plot.py ./slist-dpoly-reverse-v1-eval.txt
-$ python3 ./scripts/slist-plot.py ./slist-spoly-reverse-v1-eval.txt
-$ python3 ./scripts/slist-plot-all.py
+(env-ece2400) $ python3 ./scripts/slist-plot.py ./slist-int-reverse-v1-eval.txt
+(env-ece2400) $ python3 ./scripts/slist-plot.py ./slist-dpoly-reverse-v1-eval.txt
+(env-ece2400) $ python3 ./scripts/slist-plot.py ./slist-spoly-reverse-v1-eval.txt
+(env-ece2400) $ python3 ./scripts/slist-plot-all.py
 ```
 
 Then you can download the PDF file using VS Code and then open the PDF
@@ -323,6 +323,7 @@ $ ./scripts/eval.sh
 $ source ./scripts/slist-int-reverse-v2-eval.sh
 $ source ./scripts/slist-dpoly-reverse-v2-eval.sh
 $ source ./scripts/slist-spoly-reverse-v2-eval.sh
+# you may need to source env-ece2400/bin/activate again
 $ python3 ./scripts/slist-plot.py ./slist-int-reverse-v2-eval.txt
 $ python3 ./scripts/slist-plot.py ./slist-dpoly-reverse-v2-eval.txt
 $ python3 ./scripts/slist-plot.py ./slist-spoly-reverse-v2-eval.txt
