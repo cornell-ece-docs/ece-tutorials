@@ -2,8 +2,8 @@
 
 In this discussion, we will implement, test, and evaluate a generic list
 data structure that uses static polymorphism and then compare it to an
-object-oriented list that uses dynamic polymorphism and an
-object-oriented list that is monomorphic.
+object-oriented list that uses dynamic polymorphism (`SListIObj`) and an
+object-oriented list that is monomorphic (`SListInt`).
 
 ## 1. Logging Into `ecelinux` with VS Code
 
@@ -23,7 +23,7 @@ following commands:
 
 ```bash
 $ git clone git@github.com:cornell-ece2400/ece2400-sec10-sp26
-$ cd sec10-sp26
+$ cd sec10
 $ tree
 ```
 
@@ -86,7 +86,7 @@ $ ./scripts/build.sh
 $ ./build/test/swap-directed-test
 ```
 
-## 3. Implementing the Constructor, Destructor, Push Front
+## 3. Implementing the Destructor and Push Front
 
 Now let's take a look at these functions in `src/SList.inl`:
 
@@ -105,6 +105,8 @@ basically working:
 ```bash
 $ ./build/src/slist-spoly-adhoc
 ```
+
+(If your code is working, this test will print "10 11 12" to the screen.)
 
 ## 4. Implementing Size and At
 
@@ -237,6 +239,35 @@ $ source ./scripts/slist-int-reverse-v1-eval.sh
 $ source ./scripts/slist-dpoly-reverse-v1-eval.sh
 $ source ./scripts/slist-spoly-reverse-v1-eval.sh
 ```
+
+The scripts we'll use next require python to have matplotlib
+installed.  Unfortunately, python on the ecelinux servers do not have
+this installed and we do not have permission to install it across the
+entire server.  Users can, however, create a local python environment
+in which they can perform the installation just for personal use. To
+do this you type:
+
+
+```bash
+# Create python environment
+$ python3 -m venv env-ece2400
+
+# invoke python environment
+source env-ece2400/bin/activate
+
+# upgrade pip (which installs matplotlib)
+# I actually had to do this twice due to an upgrade still 
+# being available after the first upgrade
+(env-ece2400) $ pip install --upgrade pip
+
+# install matplotlib in your environment
+(env-ece2400) $ pip install matplotlib
+```
+
+You only need to create your `env-ece2400` environment once. After that,
+you can source it whenver you log onto the ecelinux severs.
+
+Now, back to our lab activity:
 
 As in the previous discussion section, you can easily plot the result
 data with a 0th, 1st, and 2nd order polynomial fit using the script:
